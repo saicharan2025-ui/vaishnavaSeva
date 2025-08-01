@@ -97,8 +97,18 @@
       <label for="pOccupation">Occupation / వృత్తి</label>
       <input type="text" id="pOccupation" required />
 
-      <label for="pBloodGroup">Blood Group / రక్త గ్రూప్</label>
-      <input type="text" id="pBloodGroup" required />
+     <select id="pBloodGroup" required>
+  <option value="">Select / ఎంచుకోండి</option>
+  <option>A+</option>
+  <option>A-</option>
+  <option>B+</option>
+  <option>B-</option>
+  <option>AB+</option>
+  <option>AB-</option>
+  <option>O+</option>
+  <option>O-</option>
+</select>
+
 
       <label for="pAddress">Address / చిరునామా</label>
       <textarea id="pAddress" required></textarea>
@@ -160,7 +170,18 @@
           <option>Niece / మేనకోడలు</option>
         </select>
         <label>Occupation / వృత్తి</label><input type="text" required class="cOccupation"/>
-        <label>Blood Group / రక్త గ్రూప్</label><input type="text" required class="cBloodGroup"/>
+       <select name="cBloodGroup" required>
+  <option value="">Select / ఎంచుకోండి</option>
+  <option>A+</option>
+  <option>A-</option>
+  <option>B+</option>
+  <option>B-</option>
+  <option>AB+</option>
+  <option>AB-</option>
+  <option>O+</option>
+  <option>O-</option>
+</select>
+
         <label>Address / చిరునామా</label><textarea required class="cAddress"></textarea>
         <label>Marital Status / వివాహ స్థితి</label>
         <select class="cMaritalStatus" required>
