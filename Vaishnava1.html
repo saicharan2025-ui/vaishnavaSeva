@@ -78,32 +78,32 @@
 <body>
   <div class="container">
     <h2>Primary Head Registration</h2>
-    <form id="primaryForm">
-      <label>First Name / మొదటి పేరు*</label>
-      <input type="text" id="pFirstName" required />
-      
-      <label>Middle Name / మధ్య పేరు</label>
-      <input type="text" id="pMiddleName" />
-      
-      <label>Last Name / ఇంటిపేరు*</label>
-      <input type="text" id="pLastName" required />
-      
-      <label>Age / వయస్సు*</label>
-      <input type="number" id="pAge" required />
+    <form id="fullForm" onsubmit="saveData(event)">
+      <label for="pFirstName">First Name / మొదటి పేరు*</label>
+      <input type="text" id="pFirstName" name="pFirstName" required />
 
-      <label>Gender / లింగం*</label>
-      <select id="pGender" required>
+      <label for="pMiddleName">Middle Name / మధ్య పేరు</label>
+      <input type="text" id="pMiddleName" name="pMiddleName" />
+
+      <label for="pLastName">Last Name / ఇంటిపేరు*</label>
+      <input type="text" id="pLastName" name="pLastName" required />
+
+      <label for="pAge">Age / వయస్సు*</label>
+      <input type="number" id="pAge" name="pAge" required />
+
+      <label for="pGender">Gender / లింగం*</label>
+      <select id="pGender" name="pGender" required>
         <option value="">Select</option>
         <option>Male</option>
         <option>Female</option>
         <option>Other</option>
       </select>
 
-      <label>Date of Birth / పుట్టిన తేదీ*</label>
-      <input type="date" id="pDob" max="2025-07-29" required />
+      <label for="pDob">Date of Birth / పుట్టిన తేదీ*</label>
+      <input type="date" id="pDob" name="pDob" required />
 
-      <label>Marital Status / వైవాహిక స్థితి*</label>
-      <select id="pMaritalStatus" required>
+      <label for="pMaritalStatus">Marital Status / వైవాహిక స్థితి*</label>
+      <select id="pMaritalStatus" name="pMaritalStatus" required>
         <option value="">Select</option>
         <option>Single</option>
         <option>Married</option>
@@ -111,17 +111,17 @@
         <option>Widowed</option>
       </select>
 
-      <label>Phone Number / ఫోన్ నంబర్*</label>
-      <input type="text" id="pPhone" pattern="\\d+" required />
+      <label for="pPhone">Phone Number / ఫోన్ నంబర్*</label>
+      <input type="text" id="pPhone" name="pPhone" pattern="\d+" required />
 
-      <label>Address / చిరునామా</label>
-      <textarea id="pAddress"></textarea>
+      <label for="pAddress">Address / చిరునామా</label>
+      <textarea id="pAddress" name="pAddress"></textarea>
 
-      <label>Aadhar Number / ఆధార్ సంఖ్య*</label>
-      <input type="text" id="pAadhar" pattern="\\d+" required />
+      <label for="pAadhar">Aadhar Number / ఆధార్ సంఖ్య*</label>
+      <input type="text" id="pAadhar" name="pAadhar" pattern="\d+" required />
 
-      <label>Blood Group / బ్లడ్ గ్రూప్*</label>
-      <select id="pBloodGroup" required>
+      <label for="pBloodGroup">Blood Group / బ్లడ్ గ్రూప్*</label>
+      <select id="pBloodGroup" name="pBloodGroup" required>
         <option value="">Select</option>
         <option>A+</option><option>A-</option>
         <option>B+</option><option>B-</option>
@@ -129,102 +129,107 @@
         <option>O+</option><option>O-</option>
       </select>
 
-      <label>Occupation / వృత్తి</label>
-      <input type="text" id="pOccupation" />
+      <label for="pOccupation">Occupation / వృత్తి</label>
+      <input type="text" id="pOccupation" name="pOccupation" />
 
       <div id="primaryBarcode" class="barcode"></div>
+
+      <hr />
+
+      <label><input type="checkbox" id="skipChild" onchange="toggleChildForm()"> No Child Entries</label>
+      <h2>Child Details</h2>
+
+      <div id="childForm">
+        <label for="cFirstName">First Name*</label>
+        <input type="text" id="cFirstName" name="cFirstName" required />
+
+        <label for="cMiddleName">Middle Name</label>
+        <input type="text" id="cMiddleName" name="cMiddleName" />
+
+        <label for="cLastName">Last Name*</label>
+        <input type="text" id="cLastName" name="cLastName" required />
+
+        <label for="cAge">Age*</label>
+        <input type="number" id="cAge" name="cAge" required />
+
+        <label for="cGender">Gender*</label>
+        <select id="cGender" name="cGender" required>
+          <option value="">Select</option>
+          <option>Male</option><option>Female</option><option>Other</option>
+        </select>
+
+        <label for="cDob">Date of Birth*</label>
+        <input type="date" id="cDob" name="cDob" required />
+
+        <label for="cMaritalStatus">Marital Status*</label>
+        <select id="cMaritalStatus" name="cMaritalStatus" required>
+          <option value="">Select</option>
+          <option>Single</option>
+          <option>Married</option>
+          <option>Divorced</option>
+          <option>Widowed</option>
+        </select>
+
+        <label for="cPhone">Phone Number*</label>
+        <input type="text" id="cPhone" name="cPhone" pattern="\d+" required />
+
+        <label for="cAddress">Address</label>
+        <textarea id="cAddress" name="cAddress"></textarea>
+
+        <label for="cAadhar">Aadhar Number*</label>
+        <input type="text" id="cAadhar" name="cAadhar" pattern="\d+" required />
+
+        <label for="cBloodGroup">Blood Group*</label>
+        <select id="cBloodGroup" name="cBloodGroup" required>
+          <option value="">Select</option>
+          <option>A+</option><option>A-</option>
+          <option>B+</option><option>B-</option>
+          <option>AB+</option><option>AB-</option>
+          <option>O+</option><option>O-</option>
+        </select>
+
+        <label for="cOccupation">Occupation</label>
+        <input type="text" id="cOccupation" name="cOccupation" />
+
+        <label for="cRelation">Relation to Primary User*</label>
+        <select id="cRelation" name="cRelation" required>
+          <option value="">Select</option>
+          <option>Son</option>
+          <option>Daughter</option>
+          <option>Father</option>
+          <option>Mother</option>
+          <option>Husband</option>
+          <option>Wife</option>
+          <option>Brother</option>
+          <option>Sister</option>
+          <option>Grandfather</option>
+          <option>Grandmother</option>
+          <option>Grandson</option>
+          <option>Granddaughter</option>
+          <option>Uncle</option>
+          <option>Aunt</option>
+          <option>Nephew</option>
+          <option>Niece</option>
+          <option>Cousin</option>
+          <option>Other</option>
+        </select>
+
+        <div id="childBarcode" class="barcode"></div>
+      </div>
+
+      <div class="sticky-footer">
+        <button type="submit">Save Details</button>
+      </div>
     </form>
-
-    <hr />
-
-    <label><input type="checkbox" id="skipChild" onchange="toggleChildForm()"> No Child Entries</label>
-    <h2>Child Details</h2>
-
-    <form id="childForm">
-      <label>First Name*</label>
-      <input type="text" id="cFirstName" required />
-      
-      <label>Middle Name</label>
-      <input type="text" id="cMiddleName" />
-      
-      <label>Last Name*</label>
-      <input type="text" id="cLastName" required />
-      
-      <label>Age*</label>
-      <input type="number" id="cAge" required />
-
-      <label>Gender*</label>
-      <select id="cGender" required>
-        <option value="">Select</option>
-        <option>Male</option><option>Female</option><option>Other</option>
-      </select>
-
-      <label>Date of Birth*</label>
-      <input type="date" id="cDob" max="2025-07-29" required />
-
-      <label>Marital Status*</label>
-      <select id="cMaritalStatus" required>
-        <option value="">Select</option>
-        <option>Single</option>
-        <option>Married</option>
-        <option>Divorced</option>
-        <option>Widowed</option>
-      </select>
-
-      <label>Phone Number*</label>
-      <input type="text" id="cPhone" pattern="\\d+" required />
-
-      <label>Address</label>
-      <textarea id="cAddress"></textarea>
-
-      <label>Aadhar Number*</label>
-      <input type="text" id="cAadhar" pattern="\\d+" required />
-
-      <label>Blood Group*</label>
-      <select id="cBloodGroup" required>
-        <option value="">Select</option>
-        <option>A+</option><option>A-</option>
-        <option>B+</option><option>B-</option>
-        <option>AB+</option><option>AB-</option>
-        <option>O+</option><option>O-</option>
-      </select>
-
-      <label>Occupation</label>
-      <input type="text" id="cOccupation" />
-
-      <label>Relation to Primary User*</label>
-      <select id="cRelation" required>
-        <option value="">Select</option>
-        <option>Son</option>
-        <option>Daughter</option>
-        <option>Father</option>
-        <option>Mother</option>
-        <option>Husband</option>
-        <option>Wife</option>
-        <option>Brother</option>
-        <option>Sister</option>
-        <option>Grandfather</option>
-        <option>Grandmother</option>
-        <option>Grandson</option>
-        <option>Granddaughter</option>
-        <option>Uncle</option>
-        <option>Aunt</option>
-        <option>Nephew</option>
-        <option>Niece</option>
-        <option>Cousin</option>
-        <option>Other</option>
-      </select>
-
-      <div id="childBarcode" class="barcode"></div>
-    </form>
-
-    <div class="sticky-footer">
-      <button onclick="saveData()">Save Details</button>
-    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/jsbarcode/3.11.5/JsBarcode.all.min.js"></script>
   <script>
+    // Set today's date as max DOB
+    const today = new Date().toISOString().split("T")[0];
+    document.getElementById("pDob").max = today;
+    document.getElementById("cDob").max = today;
+
     function toggleChildForm() {
       const checkbox = document.getElementById("skipChild");
       const childForm = document.getElementById("childForm");
@@ -239,7 +244,9 @@
       container.appendChild(svg);
     }
 
-    function saveData() {
+    function saveData(event) {
+      event.preventDefault();
+
       const requiredPrimary = ["pFirstName", "pLastName", "pAge", "pAadhar", "pPhone", "pDob"];
       for (let id of requiredPrimary) {
         const el = document.getElementById(id);
