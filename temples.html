@@ -1,92 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Temples - Sri Vaishnava Seva Samithi</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temples in Telangana</title>
   <style>
     body {
+      font-family: Arial, sans-serif;
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f7f8fc;
+      background: #f4f4f4;
     }
-
     nav {
-      background-color: #004d40;
-      padding: 12px 0;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
+      background-color: #333;
+      overflow: hidden;
     }
     nav a {
-      color: white;
+      float: left;
+      display: block;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 20px;
       text-decoration: none;
-      padding: 10px 20px;
-      font-weight: bold;
-      transition: background 0.3s, transform 0.3s;
     }
     nav a:hover {
-      background: #00695c;
-      transform: scale(1.05);
-      border-radius: 6px;
+      background-color: #ddd;
+      color: black;
     }
-
-    .container {
-      max-width: 1200px;
-      margin: 30px auto;
-      padding: 20px;
+    h1 {
+      text-align: center;
+      margin: 20px;
+    }
+    select {
+      display: block;
+      margin: 20px auto;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .temple-card {
       background: white;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 20px auto;
+      max-width: 800px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-
-    h1, h2 {
-      color: #2e7d32;
-      text-align: center;
+    .temple-card img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 4px;
     }
-
-    p {
-      color: #444;
-      font-size: 17px;
-      text-align: center;
-    }
-
-    .temple-map {
-      margin: 30px 0;
-    }
-
     iframe {
       width: 100%;
-      height: 400px;
-      border: 0;
-      border-radius: 12px;
-      margin-bottom: 10px;
-    }
-
-    .directions-btn {
-      display: inline-block;
-      margin: 0 auto 30px;
-      background: #388e3c;
-      color: white;
-      text-decoration: none;
-      padding: 10px 18px;
-      border-radius: 6px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    .directions-btn:hover {
-      background: #2e7d32;
-    }
-
-    @media (max-width: 600px) {
-      nav a {
-        font-size: 14px;
-        padding: 8px;
-      }
-      .container {
-        margin: 15px;
-        padding: 15px;
-      }
+      height: 300px;
+      border: none;
+      margin-top: 12px;
+      border-radius: 4px;
     }
   </style>
 </head>
@@ -99,30 +69,73 @@
     <a href="events.html">Events</a>
   </nav>
 
-  <div class="container">
-    <h1>Temples Supported by Our Samithi</h1>
-    <p>Explore sacred Vaishnava temples where we organize regular seva, visits, and spiritual programs.</p>
+  <h1>Temples in Telangana</h1>
 
-    <!-- Temple 1 -->
-    <div class="temple-map">
-      <h2>Statue of Equality, Hyderabad</h2>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.875105839744!2d78.32136657593593!3d17.4189534835041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91a46f0a033f%3A0x228a01c16a289edc!2sStatue%20of%20Equality!5e0!3m2!1sen!2sin!4v1691234567890" allowfullscreen="" loading="lazy"></iframe>
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Statue+of+Equality,+Hyderabad" target="_blank" class="directions-btn">Get Directions</a>
-    </div>
+  <select id="districtSelect" onchange="filterTemples()">
+    <option value="all">-- Select a District --</option>
+  </select>
 
-    <!-- Temple 2 -->
-    <div class="temple-map">
-      <h2>Chinna Jeeyar Ashram, Muchintal</h2>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.9445941060476!2d78.31951397494836!3d17.41557808350627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91aa5a6aab69%3A0x7c1b0415123173b5!2sChinna%20Jeeyar%20Swamy%20Ashramam%2C%20Muchintal!5e0!3m2!1sen!2sin!4v1691234987654" allowfullscreen="" loading="lazy"></iframe>
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Chinna+Jeeyar+Ashram,+Muchintal" target="_blank" class="directions-btn">Get Directions</a>
-    </div>
+  <div id="templeContainer"></div>
 
-    <!-- Temple 3 -->
-    <div class="temple-map">
-      <h2>Srirangam Temple, Tamil Nadu</h2>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3912.388731470177!2d78.68540211433699!3d10.85998566035286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b006f8df5b925f3%3A0xd10e511a6d4b7c53!2sSri+Ranganathaswamy+Temple+Srirangam!5e0!3m2!1sen!2sin!4v1691235551230" allowfullscreen="" loading="lazy"></iframe>
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Srirangam+Temple,+Tamil+Nadu" target="_blank" class="directions-btn">Get Directions</a>
-    </div>
-  </div>
+  <script>
+    const temples = [
+      {
+        "district": "Hyderabad",
+        "temple_name": "Statue of Equality",
+        "description": "A monumental tribute to Sri Ramanujacharya near Hyderabad.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Statue_of_Equality_Hyderabad.jpg",
+        "map_embed_url": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.8751711206154!2d78.32133117507403!3d17.41890158332825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcbef7b6a5e82fd%3A0x9bb631bc3d6d1e60!2sStatue%20of%20Equality!5e0!3m2!1sen!2sin!4v1691586511193!5m2!1sen!2sin"
+      },
+      {
+        "district": "Siddipet",
+        "temple_name": "Sri Lakshmi Narasimha Swamy Temple",
+        "description": "Ancient temple located in Nacharam Gutta, Siddipet.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Narasimha_swamy_temple.jpg",
+        "map_embed_url": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3808.8201609697635!2d78.85568191494687!3d17.321519988096446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcc72bd0f9d7755%3A0x6c0200002e26e207!2sSri%20Lakshmi%20Narasimha%20Swamy%20Temple!5e0!3m2!1sen!2sin!4v1625232348439!5m2!1sen!2sin"
+      },
+      {
+        "district": "Yadadri Bhuvanagiri",
+        "temple_name": "Yadadri Temple",
+        "description": "Hilltop temple dedicated to Sri Lakshmi Narasimha Swamy.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Yadagirigutta_Temple.jpg/640px-Yadagirigutta_Temple.jpg",
+        "map_embed_url": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3804.4790131087774!2d78.9408995151596!3d17.591616287989263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcc9b6b3b25b4d1%3A0x54814467f53919b7!2sYadagirigutta%20Temple!5e0!3m2!1sen!2sin!4v1625262123212!5m2!1sen!2sin"
+      }
+    ];
+
+    const select = document.getElementById('districtSelect');
+    const container = document.getElementById('templeContainer');
+
+    function populateDropdown() {
+      const districts = [...new Set(temples.map(t => t.district))];
+      districts.forEach(district => {
+        const option = document.createElement('option');
+        option.value = district;
+        option.textContent = district;
+        select.appendChild(option);
+      });
+    }
+
+    function filterTemples() {
+      const selected = select.value;
+      container.innerHTML = '';
+
+      const filtered = selected === 'all' ? temples : temples.filter(t => t.district === selected);
+      filtered.forEach(t => {
+        const div = document.createElement('div');
+        div.className = 'temple-card';
+        div.innerHTML = `
+          <h2>${t.temple_name}</h2>
+          <p>${t.description}</p>
+          <img src="${t.image_url}" alt="${t.temple_name}" />
+          <iframe src="${t.map_embed_url}" allowfullscreen loading="lazy"></iframe>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    // Initialize
+    populateDropdown();
+    filterTemples();
+  </script>
 </body>
 </html>
