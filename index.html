@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Family Registration</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
+    .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
+    h2 { text-align: center; }
+    input, select { width: 100%; padding: 8px; margin: 5px 0 15px; border-radius: 5px; border: 1px solid #ccc; }
+    label { font-weight: bold; }
+    button { padding: 10px 20px; background: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #45a049; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Family Registration</h2>
+    <form id="familyForm">
+      <label for="headName">Primary Head Name:</label>
+      <input type="text" id="headName" name="headName" required />
+      <label for="familyCode">Family Code:</label>
+      <input type="text" id="familyCode" name="familyCode" readonly />
+      <button type="button" onclick="generateCode()">Generate Code</button>
+    </form>
+
+    <form id="childForm" style="margin-top: 30px;">
+      <h3>Child Details</h3>
+      <label for="childName">Child Name:</label>
+      <input type="text" id="childName" name="childName" required />
+      <label for="childAge">Child Age:</label>
+      <input type="number" id="childAge" name="childAge" required />
+      <label for="childGender">Gender:</label>
+      <select id="childGender" name="childGender">
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+      <input type="hidden" id="linkedCode" name="linkedCode" />
+      <button type="submit">Submit Child</button>
+    </form>
+  </div>
+  <script>
+    function generateCode() {
+      const name = document.getElementById("headName").value.trim();
+      if (!name) {
+        alert("Please enter head name first.");
+        return;
+      }
+      const code = "FAM" + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById("familyCode").value = code;
+      document.getElementById("linkedCode").value = code;
+    }
+
+    document.getElementById("childForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Child submitted and linked to Family Code: " + document.getElementById("linkedCode").value);
+      this.reset();
+    });
+  </script>
+</body>
+</html>
