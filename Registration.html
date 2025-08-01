@@ -7,7 +7,7 @@
   <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, sans-serif;
       background-image: url('https://i.pinimg.com/736x/cb/cd/b7/cbcdb7948058162513a9852c4f96bfab.jpg');
       background-size: cover;
       background-repeat: no-repeat;
@@ -16,226 +16,304 @@
       color: #333;
     }
     .container {
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: rgba(255, 255, 255, 0.88);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      padding: 30px;
-      border-radius: 10px;
+      padding: 25px 30px;
+      border-radius: 12px;
       max-width: 960px;
       margin: auto;
     }
-    h2, h3 {
+    h2 {
       text-align: center;
+      margin-bottom: 20px;
     }
     label {
       font-weight: bold;
       display: block;
-      margin-top: 10px;
+      margin-top: 12px;
     }
     input, select, textarea {
       width: 100%;
       padding: 10px;
-      margin: 6px 0;
-      box-sizing: border-box;
+      margin-top: 4px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
     }
     button {
-      margin-top: 15px;
       padding: 10px 20px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
     }
-    .barcode {
+    button:hover {
+      background: #0056b3;
+    }
+    .child-box {
+      position: relative;
+      padding: 15px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: #f9f9f9;
+    }
+    .delete-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: red;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .summary {
+      margin-top: 20px;
+    }
+    .summary table {
+      width: 100%;
+      border-collapse: collapse;
       margin-top: 10px;
     }
-    .child-entry {
-      border: 1px solid #ccc;
-      padding: 15px;
-      margin-top: 20px;
-      border-radius: 8px;
-      background-color: #f9f9f9;
-    }
-    .flex-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-    }
-    .flex-row > div {
-      flex: 1;
-    }
-    #languageToggle {
-      float: right;
-      margin-bottom: 10px;
-    }
-    #summarySection {
-      display: none;
+    .summary th, .summary td {
       padding: 10px;
-      border: 1px solid green;
-      background-color: #e7ffe7;
-      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .barcode {
       margin-top: 15px;
+    }
+    .lang-toggle, .home-btn {
+      float: right;
+      margin-left: 10px;
+    }
+    .home-btn {
+      background: #28a745;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <button id="languageToggle">తెలుగు ↔ English</button>
+    <button class="home-btn" onclick="location.href='index.html'">🏠 Home</button>
+    <button class="lang-toggle" onclick="toggleLanguage()">తెలుగు ↔ English</button>
     <h2 id="formTitle">Family Registration Form</h2>
-    <form id="familyForm">
-      <div id="primaryDetails">
-        <h3 id="primaryHeader">Primary Head Details</h3>
-        <label data-en="First Name" data-te="మొదటి పేరు">First Name</label>
+    <form id="familyForm" onsubmit="submitForm(event)">
+      <div id="primarySection">
+        <label id="pFirstNameLbl">First Name</label>
         <input type="text" id="pFirstName" required />
-        <label data-en="Last Name" data-te="ఇంటి పేరు">Last Name</label>
+
+        <label id="pLastNameLbl">Last Name</label>
         <input type="text" id="pLastName" required />
-        <label data-en="Age" data-te="వయసు">Age</label>
+
+        <label id="pAgeLbl">Age</label>
         <input type="number" id="pAge" required />
-        <label data-en="Occupation" data-te="ఉద్యోగం">Occupation</label>
-        <input type="text" id="pOccupation" required />
-        <label data-en="Blood Group" data-te="రక్తపు గ్రూపు">Blood Group</label>
-        <select id="pBloodGroup" required>
+
+        <label id="pDobLbl">Date of Birth</label>
+        <input type="date" id="pDob" required max="" />
+
+        <label id="pAadharLbl">Aadhar Number</label>
+        <input type="text" id="pAadhar" pattern="\d{12}" required />
+
+        <label id="pPhoneLbl">Phone Number</label>
+        <input type="text" id="pPhone" pattern="\d{10}" required />
+
+        <label id="pOccupationLbl">Occupation</label>
+        <input type="text" id="pOccupation" />
+
+        <label id="pBloodLbl">Blood Group</label>
+        <select id="pBlood">
           <option value="">Select</option>
-          <option>A+</option><option>A-</option>
-          <option>B+</option><option>B-</option>
-          <option>O+</option><option>O-</option>
-          <option>AB+</option><option>AB-</option>
+          <option>O+</option><option>O-</option><option>A+</option><option>A-</option>
+          <option>B+</option><option>B-</option><option>AB+</option><option>AB-</option>
         </select>
-        <label data-en="Marital Status" data-te="వివాహిత స్థితి">Marital Status</label>
-        <select id="pMaritalStatus" required>
+
+        <label id="pAddressLbl">Address</label>
+        <textarea id="pAddress"></textarea>
+
+        <label id="pMaritalLbl">Marital Status</label>
+        <select id="pMarital">
           <option value="">Select</option>
-          <option>Single</option><option>Married</option>
-          <option>Divorced</option><option>Widowed</option>
+          <option>Single</option><option>Married</option><option>Divorced</option><option>Widowed</option>
         </select>
-        <label data-en="Address" data-te="చిరునామా">Address</label>
-        <textarea id="pAddress" required></textarea>
-        <label data-en="Aadhar Number" data-te="ఆధార్ నంబర్">Aadhar Number</label>
-        <input type="number" id="pAadhar" pattern="\d{12}" required />
-        <label data-en="Phone Number" data-te="ఫోన్ నంబర్">Phone Number</label>
-        <input type="number" id="pPhone" pattern="\d{10}" required />
-        <label data-en="Date of Birth" data-te="జనన తేది">Date of Birth</label>
-        <input type="date" id="pDob" required />
-        <div class="barcode" id="primaryBarcode"></div>
       </div>
+
       <hr />
-      <h3 id="childSectionTitle">Child Entries</h3>
-      <div id="childContainer"></div>
-      <button type="button" onclick="addChild()">+ Add Child</button>
-      <button type="submit">Submit</button>
+
+      <div>
+        <h3>Child Details</h3>
+        <button type="button" onclick="addChild()">➕ Add Child</button>
+        <div id="childSection"></div>
+      </div>
+
+      <div class="barcode" id="primaryBarcode"></div>
+      <br />
+      <button type="submit">Save Form</button>
     </form>
-    <div id="summarySection"></div>
-    <div id="statusMessage"></div>
+
+    <div id="preview" class="summary"></div>
   </div>
+
   <script>
     const today = new Date().toISOString().split("T")[0];
     document.getElementById("pDob").max = today;
 
-    function generateBarcode(text, targetId) {
-      const svg = document.createElement("svg");
-      JsBarcode(svg, text, { format: "CODE128", displayValue: true });
-      const container = document.getElementById(targetId);
-      container.innerHTML = "";
-      container.appendChild(svg);
+    let childCount = 0;
+    let isTelugu = false;
+
+    const fields = {
+      en: {
+        formTitle: "Family Registration Form",
+        pFirstNameLbl: "First Name", pLastNameLbl: "Last Name", pAgeLbl: "Age", pDobLbl: "Date of Birth",
+        pAadharLbl: "Aadhar Number", pPhoneLbl: "Phone Number", pOccupationLbl: "Occupation",
+        pBloodLbl: "Blood Group", pAddressLbl: "Address", pMaritalLbl: "Marital Status"
+      },
+      te: {
+        formTitle: "కుటుంబ నమోదు ఫారం",
+        pFirstNameLbl: "మొదటి పేరు", pLastNameLbl: "చివరి పేరు", pAgeLbl: "వయస్సు", pDobLbl: "పుట్టిన తేది",
+        pAadharLbl: "ఆధార్ నంబర్", pPhoneLbl: "ఫోన్ నంబర్", pOccupationLbl: "వృత్తి",
+        pBloodLbl: "రక్తగ్రూప్", pAddressLbl: "చిరునామా", pMaritalLbl: "వివాహ స్థితి"
+      }
+    };
+
+    function toggleLanguage() {
+      isTelugu = !isTelugu;
+      const lang = isTelugu ? 'te' : 'en';
+      for (let id in fields[lang]) {
+        document.getElementById(id).textContent = fields[lang][id];
+      }
     }
 
     function addChild() {
-      const count = document.querySelectorAll(".child-entry").length;
-      const div = document.createElement("div");
-      div.className = "child-entry";
-      div.innerHTML = `
-        <label>Child First Name</label>
-        <input type="text" class="cFirstName" required />
-        <label>Child Last Name</label>
-        <input type="text" class="cLastName" required />
-        <label>Age</label>
-        <input type="number" class="cAge" required />
-        <label>Occupation</label>
-        <input type="text" class="cOccupation" required />
+      childCount++;
+      const container = document.createElement('div');
+      container.className = "child-box";
+      container.id = `child${childCount}`;
+      container.innerHTML = `
+        <span class="delete-icon" onclick="removeChild('${container.id}')">❌</span>
+        <label>First Name</label><input type="text" />
+        <label>Last Name</label><input type="text" />
+        <label>Age</label><input type="number" />
+        <label>Date of Birth</label><input type="date" max="${today}" />
+        <label>Aadhar Number</label><input type="text" pattern="\\d{12}" />
+        <label>Phone Number</label><input type="text" pattern="\\d{10}" />
+        <label>Occupation</label><input type="text" />
         <label>Blood Group</label>
-        <select class="cBloodGroup" required>
+        <select>
           <option value="">Select</option>
-          <option>A+</option><option>A-</option>
-          <option>B+</option><option>B-</option>
-          <option>O+</option><option>O-</option>
-          <option>AB+</option><option>AB-</option>
+          <option>O+</option><option>O-</option><option>A+</option><option>A-</option>
+          <option>B+</option><option>B-</option><option>AB+</option><option>AB-</option>
         </select>
-        <label>Relation</label>
-        <select class="cRelation" required>
+        <label>Relation with Primary</label>
+        <select>
           <option value="">Select</option>
-          <option>Son</option><option>Daughter</option>
-          <option>Grandson</option><option>Granddaughter</option>
-          <option>Nephew</option><option>Niece</option>
+          <option>Son</option><option>Daughter</option><option>Brother</option>
+          <option>Sister</option><option>Other</option>
         </select>
-        <label>Aadhar Number</label>
-        <input type="number" class="cAadhar" pattern="\d{12}" required />
-        <label>Phone Number</label>
-        <input type="number" class="cPhone" pattern="\d{10}" required />
-        <label>Date of Birth</label>
-        <input type="date" class="cDob" max="${today}" required />
-        <div class="barcode" id="childBarcode${count + 1}"></div>
       `;
-      document.getElementById("childContainer").appendChild(div);
+      document.getElementById("childSection").appendChild(container);
     }
 
-    function showSummary(primaryData, childList) {
-      let html = `<h4>Summary Preview:</h4><pre>${JSON.stringify({ primary: primaryData, children: childList }, null, 2)}</pre>`;
-      document.getElementById("summarySection").innerHTML = html;
-      document.getElementById("summarySection").style.display = "block";
+    function removeChild(id) {
+      document.getElementById(id).remove();
     }
 
-    document.getElementById("familyForm").addEventListener("submit", function(e) {
+    function generateBarcode(text, targetId) {
+      const barcode = document.createElement("svg");
+      JsBarcode(barcode, text, { format: "CODE128", displayValue: true });
+      const container = document.getElementById(targetId);
+      container.innerHTML = "";
+      container.appendChild(barcode);
+    }
+
+    function submitForm(e) {
       e.preventDefault();
-      const get = id => document.getElementById(id).value.trim();
-      const primaryID = "P" + Date.now();
-      const primaryData = {
-        id: primaryID,
-        firstName: get("pFirstName"),
-        lastName: get("pLastName"),
-        age: get("pAge"),
-        occupation: get("pOccupation"),
-        bloodGroup: get("pBloodGroup"),
-        maritalStatus: get("pMaritalStatus"),
-        address: get("pAddress"),
-        aadhar: get("pAadhar"),
-        phone: get("pPhone"),
-        dob: get("pDob")
+
+      const formData = {
+        id: "P" + Date.now(),
+        firstName: document.getElementById("pFirstName").value,
+        lastName: document.getElementById("pLastName").value,
+        age: document.getElementById("pAge").value,
+        dob: document.getElementById("pDob").value,
+        aadhar: document.getElementById("pAadhar").value,
+        phone: document.getElementById("pPhone").value,
+        occupation: document.getElementById("pOccupation").value,
+        blood: document.getElementById("pBlood").value,
+        address: document.getElementById("pAddress").value,
+        marital: document.getElementById("pMarital").value,
+        children: []
       };
-      generateBarcode(primaryID, "primaryBarcode");
 
-      const children = [];
-      document.querySelectorAll(".child-entry").forEach((div, idx) => {
-        const childID = "C" + Date.now() + idx;
-        const getField = cls => div.querySelector(`.${cls}`).value.trim();
-        const child = {
-          id: childID,
-          firstName: getField("cFirstName"),
-          lastName: getField("cLastName"),
-          age: getField("cAge"),
-          occupation: getField("cOccupation"),
-          bloodGroup: getField("cBloodGroup"),
-          relation: getField("cRelation"),
-          aadhar: getField("cAadhar"),
-          phone: getField("cPhone"),
-          dob: getField("cDob")
+      const dob = new Date(formData.dob);
+      if (dob > new Date()) {
+        alert("Date of Birth cannot be in the future.");
+        return;
+      }
+
+      const childrenDiv = document.getElementById("childSection").children;
+      for (let child of childrenDiv) {
+        const inputs = child.querySelectorAll("input, select");
+        const childData = {
+          firstName: inputs[0].value,
+          lastName: inputs[1].value,
+          age: inputs[2].value,
+          dob: inputs[3].value,
+          aadhar: inputs[4].value,
+          phone: inputs[5].value,
+          occupation: inputs[6].value,
+          blood: inputs[7].value,
+          relation: inputs[8].value
         };
-        generateBarcode(childID, `childBarcode${idx + 1}`);
-        children.push(child);
-      });
 
-      const allData = JSON.parse(localStorage.getItem("familyEntries") || "[]");
-      allData.push({ primary: primaryData, children });
-      localStorage.setItem("familyEntries", JSON.stringify(allData));
-      showSummary(primaryData, children);
-      document.getElementById("statusMessage").textContent = "✅ Data saved locally and validated!";
-    });
-
-    document.getElementById("languageToggle").addEventListener("click", () => {
-      const labels = document.querySelectorAll("label");
-      labels.forEach(label => {
-        const en = label.getAttribute("data-en");
-        const te = label.getAttribute("data-te");
-        if (en && te) {
-          label.textContent = (label.textContent === en) ? te : en;
+        const cdob = new Date(childData.dob);
+        if (cdob > new Date()) {
+          alert("Child DOB cannot be in the future.");
+          return;
         }
-      });
-      const title = document.getElementById("formTitle");
-      title.textContent = (title.textContent === "Family Registration Form") ? "కుటుంబ నమోదు ఫారం" : "Family Registration Form";
-    });
+
+        formData.children.push(childData);
+      }
+
+      let data = JSON.parse(localStorage.getItem("familyEntries") || "[]");
+      data.push(formData);
+      localStorage.setItem("familyEntries", JSON.stringify(data));
+
+      generateBarcode(formData.id, "primaryBarcode");
+      showPreview(formData);
+      document.getElementById("familyForm").reset();
+      document.getElementById("childSection").innerHTML = "";
+    }
+
+    function showPreview(data) {
+      const div = document.getElementById("preview");
+      let html = `<h3>Summary Preview</h3>
+        <table>
+          <tr><th colspan="2">Primary Head</th></tr>
+          <tr><td>Name</td><td>${data.firstName} ${data.lastName}</td></tr>
+          <tr><td>Age</td><td>${data.age}</td></tr>
+          <tr><td>DOB</td><td>${data.dob}</td></tr>
+          <tr><td>Aadhar</td><td>${data.aadhar}</td></tr>
+          <tr><td>Phone</td><td>${data.phone}</td></tr>
+          <tr><td>Occupation</td><td>${data.occupation}</td></tr>
+          <tr><td>Blood Group</td><td>${data.blood}</td></tr>
+          <tr><td>Address</td><td>${data.address}</td></tr>
+          <tr><td>Marital Status</td><td>${data.marital}</td></tr>
+        </table>`;
+
+      if (data.children.length) {
+        html += `<table>
+          <tr><th colspan="9">Child Details</th></tr>
+          <tr><th>Name</th><th>Age</th><th>DOB</th><th>Aadhar</th><th>Phone</th><th>Occupation</th><th>Blood</th><th>Relation</th></tr>`;
+        for (let c of data.children) {
+          html += `<tr>
+            <td>${c.firstName} ${c.lastName}</td><td>${c.age}</td><td>${c.dob}</td>
+            <td>${c.aadhar}</td><td>${c.phone}</td><td>${c.occupation}</td>
+            <td>${c.blood}</td><td>${c.relation}</td>
+          </tr>`;
+        }
+        html += `</table>`;
+      }
+      div.innerHTML = html;
+    }
   </script>
 </body>
 </html>
