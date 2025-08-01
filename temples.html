@@ -1,57 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Temples - Sri Vaishnava Seva Samithi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     body {
-      margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f7f8fc;
+      margin: 0;
+      font-family: 'Rubik', sans-serif;
+      background: #f4f6f9;
+    }
+    header {
+      background-color: #004d40;
+      color: white;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 20px;
     }
     nav {
-      background-color: #004d40;
-      padding: 12px 0; display: flex; justify-content: center; flex-wrap: wrap;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
     }
     nav a {
-      color: white; text-decoration: none;
-      padding: 10px 20px; font-weight: bold;
-      transition: background 0.3s, transform 0.3s;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 4px;
+      transition: background 0.2s;
     }
     nav a:hover {
-      background: #00695c; transform: scale(1.05); border-radius: 6px;
+      background: #00695c;
     }
-    h1 {
-      text-align: center; color: #2e7d32; margin: 20px 0;
+
+    h2.page-title {
+      text-align: center;
+      margin-top: 20px;
+      color: #2e7d32;
     }
+
     select {
-      display: block; margin: 20px auto; padding: 10px; font-size: 16px;
+      display: block;
+      margin: 20px auto;
+      padding: 10px;
+      font-size: 16px;
+      width: 250px;
     }
+
     .temple-card {
-      background: white; border: 1px solid #ccc; border-radius: 8px;
-      padding: 16px; margin: 20px auto; max-width: 800px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background: white;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     }
     .temple-card img {
-      width: 100%; max-height: 300px; object-fit: cover; border-radius: 4px;
-      display: block; margin: 12px 0;
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-top: 10px;
     }
     iframe {
-      width: 100%; height: 300px; border: none;
-      margin-top: 12px; border-radius: 4px;
+      width: 100%;
+      height: 300px;
+      border: 0;
+      border-radius: 6px;
+      margin-top: 12px;
     }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="registration.html">Family Registration</a>
-    <a href="donations.html">Donations</a>
-    <a href="temples.html">Temples</a>
-    <a href="events.html">Events</a>
-  </nav>
 
-  <h1>Temples Across Telangana</h1>
+  <header>
+    <h1>Sri Vaishnava Seva Samithi</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="registration.html">Family Registration</a>
+      <a href="donations.html">Donations</a>
+      <a href="temples.html">Temples</a>
+      <a href="events.html">Events</a>
+    </nav>
+  </header>
+
+  <h2 class="page-title">Temples Across Telangana</h2>
 
   <select id="districtSelect" onchange="filterTemples()">
     <option value="all">-- Select a District --</option>
@@ -81,43 +122,8 @@
         description: "Historic Kakatiya era temple dedicated to Shiva, Vishnu and Surya in Hanamkonda." ,
         image_url: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Thousand_Pillar_Temple.jpg",
         map_embed_url: "https://www.google.com/maps/embed?...Thousand+Pillar+Temple"
-      },
-      {
-        district: "Karimnagar",
-        temple_name: "Vemulawada Raja Rajeshwara Temple",
-        description: "Pilgrimage complex dedicated to Lord Shiva; also revered by Hindus and Muslims." ,
-        image_url: "https://upload.wikimedia.org/wikipedia/commons/9/98/Vemulawada_Temple.jpg",
-        map_embed_url: "https://www.google.com/maps/embed?...Vemulawada+Temple"
-      },
-      {
-        district: "Basar",
-        temple_name: "Gnana Saraswathi Temple, Basar",
-        description: "Temple of Goddess Saraswati on banks of Godavari, popular for Akshara Abhyasam." ,
-        image_url: "https://upload.wikimedia.org/wikipedia/commons/5/50/Basar_Saraswati_Temple.jpg",
-        map_embed_url: "https://www.google.com/maps/embed?...Basar+Temple"
-      },
-      {
-        district: "Mulugu",
-        temple_name: "Ramappa Temple",
-        description: "UNESCO‑listed 13th century temple built by Kakatiya dynasty; noted for intricate carvings." ,
-        image_url: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Ramappa_Temple.jpg",
-        map_embed_url: "https://www.google.com/maps/embed?...Ramappa+Temple"
-      },
-      {
-        district: "Medchal–Malkajgiri",
-        temple_name: "Keesaragutta Temple",
-        description: "Ancient Shiva temple on a hillock featuring a swayambhu Lingam and early Telugu inscription." ,
-        image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Keesaragutta_Temple.jpg",
-        map_embed_url: "https://www.google.com/maps/embed?...Keesaragutta+Temple"
-      },
-      {
-        district: "Mancherial",
-        temple_name: "Gudem Gutta Satyanarayana Swamy Temple",
-        description: "Hill temple on Godavari bank; known as 'Telangana’s Annavaram'." ,
-        image_url: "https://upload.wikimedia.org/wikipedia/commons/c/c0/GudemGutta_Temple.jpg",
-        map_embed_url: "https://www.google.com/maps/embed?...Gudem+Gutta+Temple"
       }
-      // ...you can add more temple objects to cover all 33 districts...
+      // Add more temples here...
     ];
 
     const select = document.getElementById('districtSelect');
@@ -142,7 +148,7 @@
         const c = document.createElement('div');
         c.className = 'temple-card';
         c.innerHTML = `
-          <h2>${t.temple_name}</h2>
+          <h3>${t.temple_name}</h3>
           <p>${t.description}</p>
           <img src="${t.image_url}" alt="${t.temple_name}" />
           <iframe src="${t.map_embed_url}" allowfullscreen loading="lazy"></iframe>
@@ -154,5 +160,6 @@
     populateDropdown();
     filterTemples();
   </script>
+
 </body>
 </html>
