@@ -5,28 +5,111 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sri Vaishnava Seva Samithi</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f0f8ff; text-align: center; padding: 40px; margin: 0; }
-    h1 { color: #2e8b57; }
-    .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 0 12px rgba(0,0,0,0.1); }
-    img { width: 100%; max-width: 500px; border-radius: 10px; margin: 20px 0; }
-    a.button { display: inline-block; margin-top: 20px; padding: 12px 25px; background: #2e8b57; color: white; text-decoration: none; border-radius: 8px; font-size: 18px; }
-    a.button:hover { background: #246b45; }
-    nav { background: #2e8b57; padding: 10px 0; }
-    nav a { margin: 0 15px; color: white; text-decoration: none; font-weight: bold; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f8fc;
+    }
+
+    /* Navigation Bar */
+    nav {
+      background-color: #004d40;
+      padding: 12px 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background: #00695c;
+      border-radius: 5px;
+    }
+
+    .hero {
+      max-width: 1000px;
+      margin: 30px auto;
+      text-align: center;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    .hero img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    .hero h1 {
+      color: #2e7d32;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .cta-button {
+      padding: 12px 24px;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      text-decoration: none;
+    }
+
+    .cta-button:hover {
+      background: #1b5e20;
+    }
+
+    @media (max-width: 600px) {
+      nav a {
+        padding: 10px;
+        font-size: 14px;
+      }
+
+      .hero {
+        margin: 15px;
+        padding: 15px;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Navigation Bar -->
   <nav>
     <a href="index.html">Home</a>
     <a href="registration.html">Family Registration</a>
+    <a href="#">Donations</a>
+    <a href="#">Temples</a>
+    <a href="#">Events</a>
   </nav>
 
-  <div class="container">
+  <!-- Hero Section -->
+  <div class="hero">
     <h1>Welcome to Sri Vaishnava Seva Samithi</h1>
-    <p>Join us in preserving our heritage. Register your family with us.</p>
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjs76a_isa-iy66zxjtPSdUYz3yf-h5P93nrChEiWRLThNYMVLu5lAjidAjag3tXuknrdqLCKAXfzdddCH8rbx6yTFuGGJatddC7PROdqvkNz6JZOePOVXRpCRg8_ooAwoDPL_lDtZAxyQ/s1600/a1.jpg" />
-    <br />
-    <a href="Vaishnava1.html" class="button">Go to Family Registration</a>
+    <p>Preserve our culture, serve the community, and connect with tradition.</p>
+    <img src="https://www.shutterstock.com/image-vector/statue-equality-ramanuja-venkannaguda-telangana-260nw-2434392611.jpg">
+    <br>
+    <a class="cta-button" href="Vaishnava1.html">Start Family Registration</a>
   </div>
+
 </body>
 </html>
