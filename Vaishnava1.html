@@ -46,6 +46,11 @@
     hr {
       margin: 20px 0;
     }
+    #statusMessage {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
     @media (max-width: 600px) {
       body {
         padding: 10px;
@@ -221,11 +226,12 @@
         <button type="submit">Save Details</button>
       </div>
     </form>
+
+    <div id="statusMessage"></div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/jsbarcode/3.11.5/JsBarcode.all.min.js"></script>
   <script>
-    // Set today's date as max DOB
     const today = new Date().toISOString().split("T")[0];
     document.getElementById("pDob").max = today;
     document.getElementById("cDob").max = today;
@@ -244,15 +250,25 @@
       container.appendChild(svg);
     }
 
+    function showStatus(message, success = true) {
+      const status = document.getElementById("statusMessage");
+      status.textContent = message;
+      status.style.color = success ? "green" : "red";
+    }
+
     function saveData(event) {
       event.preventDefault();
 
       const requiredPrimary = ["pFirstName", "pLastName", "pAge", "pAadhar", "pPhone", "pDob"];
       for (let id of requiredPrimary) {
         const el = document.getElementById(id);
-        if (!el.value.trim()) return alert("Please fill all primary required fields.");
+        if (!el.value.trim()) {
+          showStatus("Please fill all required primary fields.", false);
+          return;
+        }
         if (["pAadhar", "pPhone", "pAge"].includes(id) && isNaN(el.value)) {
-          return alert(`${id} must be a number`);
+          showStatus(`${id} must be a number.`, false);
+          return;
         }
       }
 
@@ -263,18 +279,23 @@
         const requiredChild = ["cFirstName", "cLastName", "cAge", "cAadhar", "cPhone", "cDob", "cRelation"];
         for (let id of requiredChild) {
           const el = document.getElementById(id);
-          if (!el.value.trim()) return alert("Please fill all child required fields.");
+          if (!el.value.trim()) {
+            showStatus("Please fill all required child fields.", false);
+            return;
+          }
           if (["cAadhar", "cPhone", "cAge"].includes(id) && isNaN(el.value)) {
-            return alert(`${id} must be a number only`);
+            showStatus(`${id} must be a number.`, false);
+            return;
           }
         }
+
         const childID = "C" + Date.now();
         generateBarcode(childID, "childBarcode");
       } else {
         document.getElementById("childBarcode").innerHTML = "";
       }
 
-      alert("Data saved locally with unique barcode(s).");
+      showStatus("✅ All fields are valid. Form is ready!", true);
     }
   </script>
 </body>
