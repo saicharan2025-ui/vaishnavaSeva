@@ -1,231 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Family Registration Form</title>
   <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       background-image: url('https://i.pinimg.com/736x/cb/cd/b7/cbcdb7948058162513a9852c4f96bfab.jpg');
       background-size: cover;
-      background-repeat: no-repeat;
       background-attachment: fixed;
+      margin: 0;
       padding: 20px;
-      color: #333;
     }
     .container {
-      background-color: rgba(255, 255, 255, 0.85);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      background-color: rgba(255, 255, 255, 0.95);
       padding: 30px;
       border-radius: 10px;
-      max-width: 950px;
+      max-width: 1000px;
       margin: auto;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     }
-    h2, h3 {
+    h2 {
       text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
     }
     input, select, textarea {
       width: 100%;
       padding: 10px;
-      margin: 6px 0;
-      box-sizing: border-box;
-    }
-    label {
-      font-weight: bold;
-      display: block;
-      margin-top: 10px;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      cursor: pointer;
-    }
-    .barcode-container {
-      margin-top: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
     }
     .child-entry {
-      border: 1px dashed #aaa;
-      padding: 15px;
       margin-top: 20px;
+      padding: 15px;
+      border: 1px dashed #666;
       border-radius: 10px;
     }
-    #addChild {
-      background: #28a745;
+    .barcode-area {
+      margin-top: 15px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #0066cc;
       color: white;
       border: none;
+      border-radius: 5px;
+      cursor: pointer;
     }
-    @media (max-width: 600px) {
-      body {
-        padding: 10px;
-      }
-      .container {
-        padding: 20px 15px;
-      }
-      input, select, textarea {
-        font-size: 14px;
-        padding: 8px;
-      }
-      button {
-        width: 100%;
-        font-size: 14px;
-      }
+    .status {
+      margin-top: 15px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>Primary Head Details / ప్రధాన కుటుంబ సభ్యుడి వివరాలు</h2>
+    <h2>Family Registration Form / కుటుంబ నమోదుపత్రం</h2>
     <form id="familyForm" onsubmit="saveData(event)">
       <label>First Name / మొదటి పేరు</label>
-      <input type="text" id="pFirstName" required />
-
+      <input type="text" id="pFirstName" required>
       <label>Last Name / చివరి పేరు</label>
-      <input type="text" id="pLastName" required />
-
+      <input type="text" id="pLastName" required>
       <label>Age / వయస్సు</label>
-      <input type="number" id="pAge" required />
-
-      <label>Aadhar Number / ఆధార్ సంఖ్య</label>
-      <input type="text" id="pAadhar" pattern="\d{12}" required />
-
+      <input type="number" id="pAge" required>
+      <label>Aadhar Number / ఆధార్ నంబర్</label>
+      <input type="text" id="pAadhar" required>
       <label>Phone Number / ఫోన్ నంబర్</label>
-      <input type="text" id="pPhone" pattern="\d{10}" required />
-
-      <label>Date of Birth / పుట్టిన తేది</label>
-      <input type="date" id="pDob" required />
-
+      <input type="text" id="pPhone" required>
+      <label>Date of Birth / పుట్టిన తేదీ</label>
+      <input type="date" id="pDob" required>
       <label>Occupation / వృత్తి</label>
-      <input type="text" id="pOccupation" required />
-
+      <input type="text" id="pOccupation" required>
       <label>Blood Group / రక్త గ్రూప్</label>
       <select id="pBloodGroup" required>
         <option value="">Select / ఎంచుకోండి</option>
-        <option>A+</option><option>A-</option>
-        <option>B+</option><option>B-</option>
-        <option>AB+</option><option>AB-</option>
-        <option>O+</option><option>O-</option>
+        <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+        <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
       </select>
-
-      <label>Marital Status / వివాహ స్థితి</label>
-      <select id="pMaritalStatus" required>
-        <option value="">Select / ఎంచుకోండి</option>
-        <option>Married</option>
-        <option>Single</option>
-        <option>Divorced</option>
-        <option>Widowed</option>
-      </select>
-
+      <label>Marital Status / వివాహిత స్థితి</label>
+      <input type="text" id="pMaritalStatus" required>
       <label>Address / చిరునామా</label>
       <textarea id="pAddress" required></textarea>
 
-      <div class="barcode-container" id="primaryBarcode"></div>
+      <div class="barcode-area" id="primaryBarcode"></div>
 
-      <h3>Child Details / పిల్లల వివరాలు</h3>
+      <hr>
+      <h3>Add Children / పిల్లలను చేర్చండి</h3>
       <div id="childrenContainer"></div>
-
-      <button type="button" id="addChild">+ Add Child / పిల్లను చేర్చండి</button>
-
-      <br/>
-      <button type="submit">Save Details / వివరాలు సేవ్ చేయండి</button>
+      <button type="button" onclick="addChild()">+ Add Child / పిల్ల చేర్చండి</button>
+      <br>
+      <button type="submit">Save / సేవ్ చేయండి</button>
     </form>
-
-    <div id="statusMessage"></div>
+    <div class="status" id="status"></div>
   </div>
 
   <script>
-    const today = new Date().toISOString().split("T")[0];
-    document.getElementById("pDob").max = today;
+    function showStatus(msg, success = true) {
+      const s = document.getElementById("status");
+      s.style.color = success ? "green" : "red";
+      s.textContent = msg;
+    }
 
     function generateBarcode(text, targetId) {
-      const svg = document.createElement("svg");
-      JsBarcode(svg, text, { format: "CODE128", displayValue: true });
       const container = document.getElementById(targetId);
-      container.innerHTML = "";
-      container.appendChild(svg);
+      container.innerHTML = `<svg id="barcode-${text}"></svg>`;
+      JsBarcode(`#barcode-${text}`, text, {
+        format: "CODE128",
+        displayValue: true,
+        lineColor: "#000",
+        width: 2,
+        height: 40
+      });
     }
 
-    function showStatus(msg, success = true) {
-      const el = document.getElementById("statusMessage");
-      el.textContent = msg;
-      el.style.color = success ? "green" : "red";
-    }
-
-    function createChildEntry(index) {
-      const childDiv = document.createElement("div");
-      childDiv.className = "child-entry";
-
-      childDiv.innerHTML = `
+    function addChild() {
+      const container = document.getElementById("childrenContainer");
+      const idx = container.children.length;
+      const div = document.createElement("div");
+      div.className = "child-entry";
+      div.innerHTML = `
         <label>First Name / మొదటి పేరు</label>
-        <input type="text" name="cFirstName" required />
-
+        <input name="cFirstName" required>
         <label>Last Name / చివరి పేరు</label>
-        <input type="text" name="cLastName" required />
-
+        <input name="cLastName" required>
         <label>Age / వయస్సు</label>
-        <input type="number" name="cAge" required />
-
-        <label>Aadhar Number / ఆధార్ సంఖ్య</label>
-        <input type="text" name="cAadhar" pattern="\\d{12}" required />
-
-        <label>Phone Number / ఫోన్ నంబర్</label>
-        <input type="text" name="cPhone" pattern="\\d{10}" required />
-
-        <label>Date of Birth / పుట్టిన తేది</label>
-        <input type="date" name="cDob" max="${today}" required />
-
-        <label>Occupation / వృత్తి</label>
-        <input type="text" name="cOccupation" required />
-
-        <label>Blood Group / రక్త గ్రూప్</label>
-        <select name="cBloodGroup" required>
-          <option value="">Select / ఎంచుకోండి</option>
-          <option>A+</option><option>A-</option>
-          <option>B+</option><option>B-</option>
-          <option>AB+</option><option>AB-</option>
-          <option>O+</option><option>O-</option>
-        </select>
-
-        <label>Marital Status / వివాహ స్థితి</label>
-        <select name="cMaritalStatus" required>
-          <option value="">Select / ఎంచుకోండి</option>
-          <option>Single</option>
-          <option>Married</option>
-          <option>Divorced</option>
-          <option>Widowed</option>
-        </select>
-
+        <input name="cAge" type="number" required>
         <label>Relation / సంబంధం</label>
         <select name="cRelation" required>
           <option value="">Select / ఎంచుకోండి</option>
-          <option>Son</option>
-          <option>Daughter</option>
-          <option>Step-son</option>
-          <option>Step-daughter</option>
-          <option>Adopted</option>
-          <option>Grandchild</option>
+          <option>Son / కుమారుడు</option><option>Daughter / కుమార్తె</option>
+          <option>Brother / అన్న</option><option>Sister / అక్క</option>
+          <option>Grandson / మనవడు</option><option>Granddaughter / మనవరాలు</option>
+          <option>Other / ఇతర</option>
         </select>
-
-        <label>Address / చిరునామా</label>
-        <textarea name="cAddress" required></textarea>
-
-        <div class="barcode-container" id="childBarcode${index}"></div>
+        <label>Blood Group / రక్త గ్రూప్</label>
+        <select name="cBloodGroup" required>
+          <option value="">Select / ఎంచుకోండి</option>
+          <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+          <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+        </select>
+        <div class="barcode-area" id="childBarcode${idx}"></div>
       `;
-      return childDiv;
+      container.appendChild(div);
     }
-
-    document.getElementById("addChild").addEventListener("click", () => {
-      const container = document.getElementById("childrenContainer");
-      const index = container.children.length;
-      const childEntry = createChildEntry(index);
-      container.appendChild(childEntry);
-    });
 
     function saveData(event) {
       event.preventDefault();
       const getVal = id => document.getElementById(id).value.trim();
-
       const requiredPrimary = ["pFirstName", "pLastName", "pAge", "pAadhar", "pPhone", "pDob", "pOccupation", "pBloodGroup", "pMaritalStatus", "pAddress"];
       for (let id of requiredPrimary) {
         if (!getVal(id)) {
@@ -235,8 +164,6 @@
       }
 
       const primaryID = "P" + Date.now();
-      generateBarcode(primaryID, "primaryBarcode");
-
       const primaryData = {
         id: primaryID,
         firstName: getVal("pFirstName"),
@@ -251,10 +178,12 @@
         address: getVal("pAddress")
       };
 
+      generateBarcode(primaryID, "primaryBarcode");
+
       const childBlocks = document.querySelectorAll(".child-entry");
       const childData = [];
-
-      childBlocks.forEach((child, i) => {
+      for (let i = 0; i < childBlocks.length; i++) {
+        const child = childBlocks[i];
         const inputs = child.querySelectorAll("input, select, textarea");
         const data = {};
         for (let input of inputs) {
@@ -267,16 +196,19 @@
         data.id = "C" + Date.now() + i;
         generateBarcode(data.id, "childBarcode" + i);
         childData.push(data);
-      });
+      }
 
       const allData = JSON.parse(localStorage.getItem("familyEntries") || "[]");
       allData.push({ primary: primaryData, children: childData });
       localStorage.setItem("familyEntries", JSON.stringify(allData));
 
       showStatus("✅ Data saved successfully / వివరాలు విజయవంతంగా సేవ్ చేయబడ్డాయి");
-      document.getElementById("familyForm").reset();
-      document.getElementById("childrenContainer").innerHTML = "";
-      document.getElementById("primaryBarcode").innerHTML = "";
+
+      setTimeout(() => {
+        document.getElementById("familyForm").reset();
+        document.getElementById("childrenContainer").innerHTML = "";
+        document.getElementById("primaryBarcode").innerHTML = "";
+      }, 3000);
     }
   </script>
 </body>
