@@ -32,23 +32,50 @@
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 30px auto;
       padding: 20px;
       background: white;
       border-radius: 12px;
       box-shadow: 0 0 20px rgba(0,0,0,0.05);
-      text-align: center;
     }
 
-    h1 {
+    h1, h2 {
       color: #2e7d32;
-      margin-bottom: 10px;
+      text-align: center;
     }
 
     p {
       color: #444;
       font-size: 17px;
+      text-align: center;
+    }
+
+    .temple-map {
+      margin: 30px 0;
+    }
+
+    iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .directions-btn {
+      display: inline-block;
+      margin: 0 auto 30px;
+      background: #388e3c;
+      color: white;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .directions-btn:hover {
+      background: #2e7d32;
     }
 
     @media (max-width: 600px) {
@@ -56,7 +83,6 @@
         font-size: 14px;
         padding: 8px;
       }
-
       .container {
         margin: 15px;
         padding: 15px;
@@ -67,15 +93,36 @@
 <body>
   <nav>
     <a href="index.html">Home</a>
-    <a href="Vaishnava1.html">Family Registration</a>
+    <a href="registration.html">Family Registration</a>
     <a href="donations.html">Donations</a>
     <a href="temples.html">Temples</a>
     <a href="events.html">Events</a>
   </nav>
 
   <div class="container">
-    <h1>Temples</h1>
-    <p>Explore sacred Vaishnava temples supported by our Samithi. We regularly organize visits, support temple renovation, and promote awareness of our heritage.</p>
+    <h1>Temples Supported by Our Samithi</h1>
+    <p>Explore sacred Vaishnava temples where we organize regular seva, visits, and spiritual programs.</p>
+
+    <!-- Temple 1 -->
+    <div class="temple-map">
+      <h2>Statue of Equality, Hyderabad</h2>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.875105839744!2d78.32136657593593!3d17.4189534835041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91a46f0a033f%3A0x228a01c16a289edc!2sStatue%20of%20Equality!5e0!3m2!1sen!2sin!4v1691234567890" allowfullscreen="" loading="lazy"></iframe>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Statue+of+Equality,+Hyderabad" target="_blank" class="directions-btn">Get Directions</a>
+    </div>
+
+    <!-- Temple 2 -->
+    <div class="temple-map">
+      <h2>Chinna Jeeyar Ashram, Muchintal</h2>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.9445941060476!2d78.31951397494836!3d17.41557808350627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91aa5a6aab69%3A0x7c1b0415123173b5!2sChinna%20Jeeyar%20Swamy%20Ashramam%2C%20Muchintal!5e0!3m2!1sen!2sin!4v1691234987654" allowfullscreen="" loading="lazy"></iframe>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Chinna+Jeeyar+Ashram,+Muchintal" target="_blank" class="directions-btn">Get Directions</a>
+    </div>
+
+    <!-- Temple 3 -->
+    <div class="temple-map">
+      <h2>Srirangam Temple, Tamil Nadu</h2>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3912.388731470177!2d78.68540211433699!3d10.85998566035286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b006f8df5b925f3%3A0xd10e511a6d4b7c53!2sSri+Ranganathaswamy+Temple+Srirangam!5e0!3m2!1sen!2sin!4v1691235551230" allowfullscreen="" loading="lazy"></iframe>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Srirangam+Temple,+Tamil+Nadu" target="_blank" class="directions-btn">Get Directions</a>
+    </div>
   </div>
 </body>
 </html>
