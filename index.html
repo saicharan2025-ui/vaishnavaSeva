@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sri Vaishnava Seva Samithi</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     * {
       margin: 0;
@@ -14,7 +14,6 @@
     html, body {
       height: 100%;
       font-family: 'Segoe UI', sans-serif;
-      scroll-behavior: smooth;
       overflow: hidden;
     }
 
@@ -22,27 +21,35 @@
       position: fixed;
       top: 0;
       width: 100%;
-      z-index: 10;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 15px 30px;
+      z-index: 100;
+      background-color: rgba(0, 0, 0, 0.6);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 12px 20px;
+      flex-wrap: wrap;
     }
 
     .navbar h1 {
       color: white;
-      font-size: 1.5em;
+      font-size: 1.4rem;
     }
 
-    .navbar a {
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .nav-links a {
       color: white;
-      margin-left: 20px;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
+      font-size: 0.95rem;
     }
 
-    .navbar a:hover {
+    .nav-links a:hover {
       text-decoration: underline;
     }
 
@@ -72,26 +79,38 @@
       left: 50%;
       transform: translate(-50%, -50%);
       color: white;
-      font-size: 2em;
-      background-color: rgba(0,0,0,0.4);
-      padding: 20px;
-      border-radius: 10px;
+      font-size: 2rem;
       text-align: center;
-      text-shadow: 2px 2px 5px black;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+      max-width: 90%;
+      line-height: 1.4;
+      text-shadow: 2px 2px 4px #000;
     }
 
     @media (max-width: 768px) {
       .navbar {
         flex-direction: column;
-        padding: 10px 15px;
+        align-items: flex-start;
       }
 
-      .navbar a {
-        margin: 10px 0;
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+        padding-left: 10px;
       }
 
       .overlay-text {
-        font-size: 1.2em;
+        font-size: 1.2rem;
+        padding: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .overlay-text {
+        font-size: 1rem;
+        padding: 10px;
       }
     }
   </style>
@@ -101,7 +120,7 @@
   <!-- Navbar -->
   <div class="navbar">
     <h1>Sri Vaishnava Seva Samithi</h1>
-    <div>
+    <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="Registration.html">Family Registration</a>
       <a href="temples.html">Temples</a>
@@ -116,14 +135,14 @@
       
     </div>
     <div class="slide" style="background-image: url('https://www.kinchit.org/dharma-sandeha/wp-content/uploads/2019/05/Thirupathi-Perumal.gif');">
-      
+     
     </div>
     <div class="slide" style="background-image: url('https://i.pinimg.com/originals/38/88/40/388840b995001e80246d305a614f7d47.gif');">
-      
+     
     </div>
   </div>
 
-  <!-- JS to auto-switch GIFs -->
+  <!-- Script to switch slides -->
   <script>
     let currentSlide = 0;
     const slides = document.querySelectorAll(".slide");
@@ -132,7 +151,7 @@
       slides[currentSlide].classList.remove("active");
       currentSlide = (currentSlide + 1) % slides.length;
       slides[currentSlide].classList.add("active");
-    }, 4000); // Change every 5 seconds
+    }, 4000); // 4 seconds per slide
   </script>
 
 </body>
