@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Family Registration Form</title>
   <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
   <style>
@@ -10,210 +10,270 @@
       font-family: 'Segoe UI', sans-serif;
       background-image: url('https://i.pinimg.com/736x/cb/cd/b7/cbcdb7948058162513a9852c4f96bfab.jpg');
       background-size: cover;
+      background-repeat: no-repeat;
       background-attachment: fixed;
-      margin: 0;
       padding: 20px;
+      color: #333;
     }
     .container {
-      background-color: rgba(255, 255, 255, 0.95);
+      background-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       padding: 30px;
       border-radius: 10px;
       max-width: 1000px;
       margin: auto;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     }
     h2 {
       text-align: center;
     }
     label {
-      display: block;
-      margin-top: 10px;
       font-weight: bold;
+      margin-top: 10px;
+      display: block;
     }
-    input, select, textarea {
+    input, select {
       width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 6px;
+      padding: 8px;
+      margin: 5px 0 15px 0;
+      box-sizing: border-box;
+    }
+    .child-block {
       border: 1px solid #ccc;
-    }
-    .child-entry {
-      margin-top: 20px;
       padding: 15px;
-      border: 1px dashed #666;
-      border-radius: 10px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      background-color: #f9f9f9;
     }
-    .barcode-area {
-      margin-top: 15px;
+    .barcode-container svg {
+      width: 100%;
+      max-width: 300px;
+      margin-top: 10px;
     }
     button {
-      margin-top: 20px;
       padding: 10px 20px;
-      background: #0066cc;
-      color: white;
-      border: none;
-      border-radius: 5px;
+      font-size: 16px;
+      margin-top: 10px;
       cursor: pointer;
     }
-    .status {
-      margin-top: 15px;
-      font-weight: bold;
+    .success {
+      color: green;
+    }
+    .error {
+      color: red;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>Family Registration Form / కుటుంబ నమోదుపత్రం</h2>
-    <form id="familyForm" onsubmit="saveData(event)">
+    <h2>Primary Head Details / కుటుంబ ప్రధాన వ్యక్తి వివరాలు</h2>
+    <form id="familyForm" onsubmit="saveForm(event)">
       <label>First Name / మొదటి పేరు</label>
-      <input type="text" id="pFirstName" required>
+      <input type="text" name="pFirstName" required />
+      
       <label>Last Name / చివరి పేరు</label>
-      <input type="text" id="pLastName" required>
+      <input type="text" name="pLastName" required />
+      
       <label>Age / వయస్సు</label>
-      <input type="number" id="pAge" required>
+      <input type="number" name="pAge" required />
+
       <label>Aadhar Number / ఆధార్ నంబర్</label>
-      <input type="text" id="pAadhar" required>
+      <input type="number" name="pAadhar" pattern="\d{12}" required />
+      
       <label>Phone Number / ఫోన్ నంబర్</label>
-      <input type="text" id="pPhone" required>
-      <label>Date of Birth / పుట్టిన తేదీ</label>
-      <input type="date" id="pDob" required>
+      <input type="number" name="pPhone" pattern="\d{10}" required />
+      
+      <label>Date of Birth / పుట్టిన తేది</label>
+      <input type="date" name="pDob" required />
+
       <label>Occupation / వృత్తి</label>
-      <input type="text" id="pOccupation" required>
+      <input type="text" name="pOccupation" required />
+
       <label>Blood Group / రక్త గ్రూప్</label>
-      <select id="pBloodGroup" required>
+      <select name="pBloodGroup" required>
         <option value="">Select / ఎంచుకోండి</option>
-        <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
-        <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+        <option>A+</option>
+        <option>A-</option>
+        <option>B+</option>
+        <option>B-</option>
+        <option>AB+</option>
+        <option>AB-</option>
+        <option>O+</option>
+        <option>O-</option>
       </select>
-      <select name="pMarital" required>
-  <option value="">Select / ఎంచుకోండి</option>
-  <option>Single / ఒంటరి</option>
-  <option>Married / వివాహితులు</option>
-  <option>Divorced / విడాకులు పొందిన</option>
-  <option>Widowed / విధవులు</option>
-</select>
+
       <label>Address / చిరునామా</label>
-      <textarea id="pAddress" required></textarea>
+      <input type="text" name="pAddress" required />
 
-      <div class="barcode-area" id="primaryBarcode"></div>
+      <label>Marital Status / వివాహ స్థితి</label>
+      <select name="pMarital" required>
+        <option value="">Select / ఎంచుకోండి</option>
+        <option>Single / ఒంటరి</option>
+        <option>Married / వివాహితులు</option>
+        <option>Divorced / విడాకులు పొందిన</option>
+        <option>Widowed / విధవులు</option>
+      </select>
 
-      <hr>
-      <h3>Add Children / పిల్లలను చేర్చండి</h3>
-      <div id="childrenContainer"></div>
-      <button type="button" onclick="addChild()">+ Add Child / పిల్ల చేర్చండి</button>
-      <br>
-      <button type="submit">Save / సేవ్ చేయండి</button>
+      <div class="barcode-container" id="primaryBarcode"></div>
+
+      <h3><input type="checkbox" id="addChild" onclick="toggleChildren()" /> Add Child Details / పిల్లల వివరాలు జోడించండి</h3>
+
+      <div id="childrenSection" style="display:none;"></div>
+      <button type="button" onclick="addChild()">➕ Add Another Child / మరొక పిల్లను జోడించండి</button>
+
+      <br><br>
+      <button type="submit">💾 Save Details / వివరాలను భద్రపరచండి</button>
     </form>
-    <div class="status" id="status"></div>
+
+    <div id="statusMessage"></div>
   </div>
 
   <script>
-    function showStatus(msg, success = true) {
-      const s = document.getElementById("status");
-      s.style.color = success ? "green" : "red";
-      s.textContent = msg;
-    }
+    document.querySelector('[name="pDob"]').max = new Date().toISOString().split("T")[0];
 
-    function generateBarcode(text, targetId) {
-      const container = document.getElementById(targetId);
-      container.innerHTML = `<svg id="barcode-${text}"></svg>`;
-      JsBarcode(`#barcode-${text}`, text, {
-        format: "CODE128",
-        displayValue: true,
-        lineColor: "#000",
-        width: 2,
-        height: 40
-      });
+    function toggleChildren() {
+      const section = document.getElementById("childrenSection");
+      section.style.display = document.getElementById("addChild").checked ? "block" : "none";
+      if (section.children.length === 0) addChild(); // add first block
     }
 
     function addChild() {
-      const container = document.getElementById("childrenContainer");
-      const idx = container.children.length;
+      const section = document.getElementById("childrenSection");
+      const index = section.children.length;
       const div = document.createElement("div");
-      div.className = "child-entry";
+      div.className = "child-block";
       div.innerHTML = `
+        <h3>Child ${index + 1} / పిల్ల ${index + 1}</h3>
         <label>First Name / మొదటి పేరు</label>
-        <input name="cFirstName" required>
+        <input type="text" name="cFirstName" required />
+
         <label>Last Name / చివరి పేరు</label>
-        <input name="cLastName" required>
+        <input type="text" name="cLastName" required />
+
         <label>Age / వయస్సు</label>
-        <input name="cAge" type="number" required>
-        <label>Relation / సంబంధం</label>
-        <select name="cRelation" required>
-          <option value="">Select / ఎంచుకోండి</option>
-          <option>Son / కుమారుడు</option><option>Daughter / కుమార్తె</option>
-          <option>Brother / అన్న</option><option>Sister / అక్క</option>
-          <option>Grandson / మనవడు</option><option>Granddaughter / మనవరాలు</option>
-          <option>Other / ఇతర</option>
-        </select>
+        <input type="number" name="cAge" required />
+
+        <label>Aadhar Number / ఆధార్ నంబర్</label>
+        <input type="number" name="cAadhar" pattern="\\d{12}" required />
+
+        <label>Phone Number / ఫోన్ నంబర్</label>
+        <input type="number" name="cPhone" pattern="\\d{10}" required />
+
+        <label>Date of Birth / పుట్టిన తేది</label>
+        <input type="date" name="cDob" required max="${new Date().toISOString().split("T")[0]}" />
+
+        <label>Occupation / వృత్తి</label>
+        <input type="text" name="cOccupation" required />
+
         <label>Blood Group / రక్త గ్రూప్</label>
         <select name="cBloodGroup" required>
           <option value="">Select / ఎంచుకోండి</option>
-          <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
-          <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+          <option>A+</option>
+          <option>A-</option>
+          <option>B+</option>
+          <option>B-</option>
+          <option>AB+</option>
+          <option>AB-</option>
+          <option>O+</option>
+          <option>O-</option>
         </select>
-        <div class="barcode-area" id="childBarcode${idx}"></div>
+
+        <label>Address / చిరునామా</label>
+        <input type="text" name="cAddress" required />
+
+        <label>Marital Status / వివాహ స్థితి</label>
+        <select name="cMarital" required>
+          <option value="">Select / ఎంచుకోండి</option>
+          <option>Single / ఒంటరి</option>
+          <option>Married / వివాహితులు</option>
+          <option>Divorced / విడాకులు పొందిన</option>
+          <option>Widowed / విధవులు</option>
+        </select>
+
+        <label>Relation / సంబంధం</label>
+        <select name="cRelation" required>
+          <option value="">Select / ఎంచుకోండి</option>
+          <option>Son / కుమారుడు</option>
+          <option>Daughter / కుమార్తె</option>
+          <option>Nephew / మేనమామ</option>
+          <option>Niece / మేనకోడలు</option>
+          <option>Grandchild / మనవడు</option>
+        </select>
+
+        <div class="barcode-container" id="childBarcode${index}"></div>
       `;
-      container.appendChild(div);
+      section.appendChild(div);
     }
 
-    function saveData(event) {
-      event.preventDefault();
-      const getVal = id => document.getElementById(id).value.trim();
-      const requiredPrimary = ["pFirstName", "pLastName", "pAge", "pAadhar", "pPhone", "pDob", "pOccupation", "pBloodGroup", "pMaritalStatus", "pAddress"];
-      for (let id of requiredPrimary) {
-        if (!getVal(id)) {
-          showStatus("Fill all primary fields correctly / అన్ని ప్రధాన వివరాలు నమోదు చేయండి", false);
-          return;
-        }
-      }
+    function showStatus(msg, success = true) {
+      const status = document.getElementById("statusMessage");
+      status.textContent = msg;
+      status.className = success ? "success" : "error";
+    }
 
-      const primaryID = "P" + Date.now();
-      const primaryData = {
-        id: primaryID,
-        firstName: getVal("pFirstName"),
-        lastName: getVal("pLastName"),
-        age: getVal("pAge"),
-        aadhar: getVal("pAadhar"),
-        phone: getVal("pPhone"),
-        dob: getVal("pDob"),
-        occupation: getVal("pOccupation"),
-        bloodGroup: getVal("pBloodGroup"),
-        maritalStatus: getVal("pMaritalStatus"),
-        address: getVal("pAddress")
+    function generateBarcode(id, containerId) {
+      const svg = document.createElement("svg");
+      JsBarcode(svg, id, { format: "CODE128", displayValue: true });
+      const target = document.getElementById(containerId);
+      target.innerHTML = "";
+      target.appendChild(svg);
+    }
+
+    function saveForm(e) {
+      e.preventDefault();
+      const form = document.getElementById("familyForm");
+
+      const get = name => form.querySelector(`[name="${name}"]`)?.value.trim() || "";
+
+      const primaryId = "P" + Date.now();
+      generateBarcode(primaryId, "primaryBarcode");
+
+      const primary = {
+        id: primaryId,
+        firstName: get("pFirstName"),
+        lastName: get("pLastName"),
+        age: get("pAge"),
+        aadhar: get("pAadhar"),
+        phone: get("pPhone"),
+        dob: get("pDob"),
+        occupation: get("pOccupation"),
+        bloodGroup: get("pBloodGroup"),
+        address: get("pAddress"),
+        marital: get("pMarital")
       };
 
-      generateBarcode(primaryID, "primaryBarcode");
-
-      const childBlocks = document.querySelectorAll(".child-entry");
-      const childData = [];
-      for (let i = 0; i < childBlocks.length; i++) {
-        const child = childBlocks[i];
-        const inputs = child.querySelectorAll("input, select, textarea");
-        const data = {};
-        for (let input of inputs) {
-          if (!input.value.trim()) {
-            showStatus("Fill all child fields / పిల్లల వివరాలు నమోదు చేయండి", false);
-            return;
-          }
-          data[input.name] = input.value.trim();
+      const children = [];
+      if (document.getElementById("addChild").checked) {
+        const blocks = document.querySelectorAll(".child-block");
+        for (let i = 0; i < blocks.length; i++) {
+          const b = blocks[i];
+          const getField = n => b.querySelector(`[name="${n}"]`)?.value.trim() || "";
+          const childId = "C" + Date.now() + "_" + i;
+          generateBarcode(childId, "childBarcode" + i);
+          children.push({
+            id: childId,
+            firstName: getField("cFirstName"),
+            lastName: getField("cLastName"),
+            age: getField("cAge"),
+            aadhar: getField("cAadhar"),
+            phone: getField("cPhone"),
+            dob: getField("cDob"),
+            occupation: getField("cOccupation"),
+            bloodGroup: getField("cBloodGroup"),
+            address: getField("cAddress"),
+            marital: getField("cMarital"),
+            relation: getField("cRelation")
+          });
         }
-        data.id = "C" + Date.now() + i;
-        generateBarcode(data.id, "childBarcode" + i);
-        childData.push(data);
       }
 
-      const allData = JSON.parse(localStorage.getItem("familyEntries") || "[]");
-      allData.push({ primary: primaryData, children: childData });
-      localStorage.setItem("familyEntries", JSON.stringify(allData));
+      const saved = JSON.parse(localStorage.getItem("families") || "[]");
+      saved.push({ primary, children });
+      localStorage.setItem("families", JSON.stringify(saved));
 
-      showStatus("✅ Data saved successfully / వివరాలు విజయవంతంగా సేవ్ చేయబడ్డాయి");
-
-      setTimeout(() => {
-        document.getElementById("familyForm").reset();
-        document.getElementById("childrenContainer").innerHTML = "";
-        document.getElementById("primaryBarcode").innerHTML = "";
-      }, 3000);
+      showStatus("✅ Saved Successfully / విజయవంతంగా భద్రపరచబడింది!");
+      form.reset();
+      document.getElementById("childrenSection").innerHTML = "";
+      toggleChildren();
     }
   </script>
 </body>
