@@ -3,60 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Temples in Telangana</title>
+  <title>Temples - Sri Vaishnava Seva Samithi</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f4f4f4;
+      margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f8fc;
     }
     nav {
-      background-color: #333;
-      overflow: hidden;
+      background-color: #004d40;
+      padding: 12px 0; display: flex; justify-content: center; flex-wrap: wrap;
     }
     nav a {
-      float: left;
-      display: block;
-      color: #f2f2f2;
-      text-align: center;
-      padding: 14px 20px;
-      text-decoration: none;
+      color: white; text-decoration: none;
+      padding: 10px 20px; font-weight: bold;
+      transition: background 0.3s, transform 0.3s;
     }
     nav a:hover {
-      background-color: #ddd;
-      color: black;
+      background: #00695c; transform: scale(1.05); border-radius: 6px;
     }
     h1 {
-      text-align: center;
-      margin: 20px;
+      text-align: center; color: #2e7d32; margin: 20px 0;
     }
     select {
-      display: block;
-      margin: 20px auto;
-      padding: 10px;
-      font-size: 16px;
+      display: block; margin: 20px auto; padding: 10px; font-size: 16px;
     }
     .temple-card {
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 16px;
-      margin: 20px auto;
-      max-width: 800px;
+      background: white; border: 1px solid #ccc; border-radius: 8px;
+      padding: 16px; margin: 20px auto; max-width: 800px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     .temple-card img {
-      width: 100%;
-      max-height: 300px;
-      object-fit: cover;
-      border-radius: 4px;
+      width: 100%; max-height: 300px; object-fit: cover; border-radius: 4px;
+      display: block; margin: 12px 0;
     }
     iframe {
-      width: 100%;
-      height: 300px;
-      border: none;
-      margin-top: 12px;
-      border-radius: 4px;
+      width: 100%; height: 300px; border: none;
+      margin-top: 12px; border-radius: 4px;
     }
   </style>
 </head>
@@ -69,7 +51,7 @@
     <a href="events.html">Events</a>
   </nav>
 
-  <h1>Temples in Telangana</h1>
+  <h1>Temples Across Telangana</h1>
 
   <select id="districtSelect" onchange="filterTemples()">
     <option value="all">-- Select a District --</option>
@@ -80,60 +62,95 @@
   <script>
     const temples = [
       {
-        "district": "Hyderabad",
-        "temple_name": "Statue of Equality",
-        "description": "A monumental tribute to Sri Ramanujacharya near Hyderabad.",
-        "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Statue_of_Equality_Hyderabad.jpg",
-        "map_embed_url": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.8751711206154!2d78.32133117507403!3d17.41890158332825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcbef7b6a5e82fd%3A0x9bb631bc3d6d1e60!2sStatue%20of%20Equality!5e0!3m2!1sen!2sin!4v1691586511193!5m2!1sen!2sin"
+        district: "Yadadri Bhuvanagiri",
+        temple_name: "Yadadri Lakshmi Narasimha Swamy Temple",
+        description: "Hill‑top shrine dedicated to Narasimha Swamy, one of Telangana’s most visited pilgrim centers." ,
+        image_url: "https://upload.wikimedia.org/wikipedia/commons/e/e1/Yadagirigutta_Temple.jpg",
+        map_embed_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3804.4790131087774!2d78.9408995151596!3d17.591616287989263..."
       },
       {
-        "district": "Siddipet",
-        "temple_name": "Sri Lakshmi Narasimha Swamy Temple",
-        "description": "Ancient temple located in Nacharam Gutta, Siddipet.",
-        "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Narasimha_swamy_temple.jpg",
-        "map_embed_url": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3808.8201609697635!2d78.85568191494687!3d17.321519988096446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcc72bd0f9d7755%3A0x6c0200002e26e207!2sSri%20Lakshmi%20Narasimha%20Swamy%20Temple!5e0!3m2!1sen!2sin!4v1625232348439!5m2!1sen!2sin"
+        district: "Hyderabad",
+        temple_name: "Chilkur Balaji Temple",
+        description: "The famous 'Visa Balaji' temple near Hyderabad, believed to grant visa wishes after circling deity." ,
+        image_url: "https://upload.wikimedia.org/wikipedia/commons/5/5a/Chilkur_Balaji_Temple.jpg",
+        map_embed_url: "https://www.google.com/maps/embed?...Chilkur+Temple"
       },
       {
-        "district": "Yadadri Bhuvanagiri",
-        "temple_name": "Yadadri Temple",
-        "description": "Hilltop temple dedicated to Sri Lakshmi Narasimha Swamy.",
-        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Yadagirigutta_Temple.jpg/640px-Yadagirigutta_Temple.jpg",
-        "map_embed_url": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3804.4790131087774!2d78.9408995151596!3d17.591616287989263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcc9b6b3b25b4d1%3A0x54814467f53919b7!2sYadagirigutta%20Temple!5e0!3m2!1sen!2sin!4v1625262123212!5m2!1sen!2sin"
+        district: "Warangal Urban",
+        temple_name: "Thousand Pillar Temple",
+        description: "Historic Kakatiya era temple dedicated to Shiva, Vishnu and Surya in Hanamkonda." ,
+        image_url: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Thousand_Pillar_Temple.jpg",
+        map_embed_url: "https://www.google.com/maps/embed?...Thousand+Pillar+Temple"
+      },
+      {
+        district: "Karimnagar",
+        temple_name: "Vemulawada Raja Rajeshwara Temple",
+        description: "Pilgrimage complex dedicated to Lord Shiva; also revered by Hindus and Muslims." ,
+        image_url: "https://upload.wikimedia.org/wikipedia/commons/9/98/Vemulawada_Temple.jpg",
+        map_embed_url: "https://www.google.com/maps/embed?...Vemulawada+Temple"
+      },
+      {
+        district: "Basar",
+        temple_name: "Gnana Saraswathi Temple, Basar",
+        description: "Temple of Goddess Saraswati on banks of Godavari, popular for Akshara Abhyasam." ,
+        image_url: "https://upload.wikimedia.org/wikipedia/commons/5/50/Basar_Saraswati_Temple.jpg",
+        map_embed_url: "https://www.google.com/maps/embed?...Basar+Temple"
+      },
+      {
+        district: "Mulugu",
+        temple_name: "Ramappa Temple",
+        description: "UNESCO‑listed 13th century temple built by Kakatiya dynasty; noted for intricate carvings." ,
+        image_url: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Ramappa_Temple.jpg",
+        map_embed_url: "https://www.google.com/maps/embed?...Ramappa+Temple"
+      },
+      {
+        district: "Medchal–Malkajgiri",
+        temple_name: "Keesaragutta Temple",
+        description: "Ancient Shiva temple on a hillock featuring a swayambhu Lingam and early Telugu inscription." ,
+        image_url: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Keesaragutta_Temple.jpg",
+        map_embed_url: "https://www.google.com/maps/embed?...Keesaragutta+Temple"
+      },
+      {
+        district: "Mancherial",
+        temple_name: "Gudem Gutta Satyanarayana Swamy Temple",
+        description: "Hill temple on Godavari bank; known as 'Telangana’s Annavaram'." ,
+        image_url: "https://upload.wikimedia.org/wikipedia/commons/c/c0/GudemGutta_Temple.jpg",
+        map_embed_url: "https://www.google.com/maps/embed?...Gudem+Gutta+Temple"
       }
+      // ...you can add more temple objects to cover all 33 districts...
     ];
 
     const select = document.getElementById('districtSelect');
     const container = document.getElementById('templeContainer');
 
     function populateDropdown() {
-      const districts = [...new Set(temples.map(t => t.district))];
-      districts.forEach(district => {
-        const option = document.createElement('option');
-        option.value = district;
-        option.textContent = district;
-        select.appendChild(option);
+      [...new Set(temples.map(t => t.district))]
+      .sort()
+      .forEach(district => {
+        const opt = document.createElement('option');
+        opt.value = district;
+        opt.textContent = district;
+        select.appendChild(opt);
       });
     }
 
     function filterTemples() {
-      const selected = select.value;
       container.innerHTML = '';
-
-      const filtered = selected === 'all' ? temples : temples.filter(t => t.district === selected);
+      const sel = select.value;
+      const filtered = sel === 'all' ? temples : temples.filter(t => t.district === sel);
       filtered.forEach(t => {
-        const div = document.createElement('div');
-        div.className = 'temple-card';
-        div.innerHTML = `
+        const c = document.createElement('div');
+        c.className = 'temple-card';
+        c.innerHTML = `
           <h2>${t.temple_name}</h2>
           <p>${t.description}</p>
           <img src="${t.image_url}" alt="${t.temple_name}" />
           <iframe src="${t.map_embed_url}" allowfullscreen loading="lazy"></iframe>
         `;
-        container.appendChild(div);
+        container.appendChild(c);
       });
     }
 
-    // Initialize
     populateDropdown();
     filterTemples();
   </script>
