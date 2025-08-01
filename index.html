@@ -1,201 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Sri Vaishnava Seva Samithi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f7f8fc;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    /* Navigation Bar */
-    nav {
-      background-color: #004d40;
-      padding: 12px 0;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 10px 20px;
-      font-weight: bold;
-      transition: background 0.3s, transform 0.3s;
-    }
-    nav a:hover {
-      background: #00695c;
-      transform: scale(1.05);
-      border-radius: 6px;
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      scroll-behavior: smooth;
+      overflow: hidden;
     }
 
-    /* Hero Section */
-    .hero {
-      max-width: 1000px;
-      margin: 30px auto;
-      text-align: center;
-      padding: 20px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    }
-    .hero img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin: 20px 0;
-      opacity: 0;
-      animation: fadeIn 2s ease-in forwards;
-    }
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-    .hero h1 {
-      color: #2e7d32;
-      margin-bottom: 10px;
-    }
-    .hero p {
-      font-size: 18px;
-      color: #555;
-      margin-bottom: 20px;
-    }
-    .cta-button {
-      padding: 12px 24px;
-      background: #2e7d32;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      text-decoration: none;
-    }
-    .cta-button:hover {
-      background: #1b5e20;
-    }
-
-    /* Events Slider */
-    .events {
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .events h3 {
-      text-align: center;
-      margin-bottom: 15px;
-      color: #333;
-    }
-    .event-slider {
-      display: flex;
-      overflow-x: auto;
-      gap: 15px;
-      padding: 10px 0;
-    }
-    .event-card {
-      flex: 0 0 auto;
-      background: #e0f2f1;
-      border-radius: 8px;
-      padding: 12px 20px;
-      min-width: 220px;
-      box-shadow: 0 0 5px #ccc;
-      font-size: 14px;
-    }
-
-    /* Quote Box */
-    #quoteBox {
-      text-align: center;
-      font-size: 18px;
-      font-style: italic;
-      color: #444;
-      margin: 30px auto;
-      padding: 10px;
-    }
-
-    /* Floating Donate Button */
-    .float-button {
+    .navbar {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #e65100;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 50px;
-      font-weight: bold;
-      text-decoration: none;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-    }
-    .float-button:hover {
-      background: #bf360c;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    @media (max-width: 600px) {
-      nav a {
-        padding: 10px;
-        font-size: 14px;
+    .navbar h1 {
+      color: white;
+      font-size: 1.5em;
+    }
+
+    .navbar a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
+    .slideshow {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 2em;
+      background-color: rgba(0,0,0,0.4);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      text-shadow: 2px 2px 5px black;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        padding: 10px 15px;
       }
-      .hero {
-        margin: 15px;
-        padding: 15px;
+
+      .navbar a {
+        margin: 10px 0;
       }
-      .hero h1 {
-        font-size: 24px;
+
+      .overlay-text {
+        font-size: 1.2em;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="Registration.html">Family Registration</a>
-    <a href="donations.html">Donations</a>
-    <a href="temples.html">Temples</a>
-    <a href="events.html">Events</a>
-  </nav>
-
-  <!-- Hero Section -->
-  <div class="hero">
-    <h1>Welcome to Sri Vaishnava Seva Samithi</h1>
-    <p>Preserve our culture, serve the community, and connect with tradition.</p>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyfBlfm5X2rQgpXi8v2XLYtmLQufYodKvNebxDPEZm7XvTLWkKt72PCl9vRdMwhtlfXcs&usqp=CAU">
-    <br>
-    <a class="cta-button" href="Vaishnava1.html">Register Here</a>
-  </div>
-
-  <!-- Quote Rotator -->
-  <div id="quoteBox">"Truth alone triumphs."</div>
-
-  <!-- Events Slider -->
-  <div class="events">
-    <h3>Upcoming Events</h3>
-    <div class="event-slider">
-      <div class="event-card">📖 Gita Recital – Aug 15</div>
-      <div class="event-card">🏛️ Temple Visit – Aug 21</div>
-      <div class="event-card">🍲 Food Drive – Sept 1</div>
-      <div class="event-card">🎉 Cultural Fest – Sept 10</div>
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1>Sri Vaishnava Seva Samithi</h1>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="Registration.html">Family Registration</a>
+      <a href="temples.html">Temples</a>
+      <a href="events.html">Events</a>
+      <a href="donations.html">Donations</a>
     </div>
   </div>
 
-  <!-- Floating Donate Button -->
-  <a href="#" class="float-button">Donate</a>
+  <!-- Slideshow -->
+  <div class="slideshow">
+    <div class="slide active" style="background-image: url('https://www.kinchit.org/dharma-sandeha/wp-content/uploads/2019/05/Thirupathi-Perumal-2.gif');">
+      
+    </div>
+    <div class="slide" style="background-image: url('https://www.kinchit.org/dharma-sandeha/wp-content/uploads/2019/05/Thirupathi-Perumal.gif');">
+      
+    </div>
+    <div class="slide" style="background-image: url('https://i.pinimg.com/originals/38/88/40/388840b995001e80246d305a614f7d47.gif');">
+      
+    </div>
+  </div>
 
-  <!-- Script for Quote Rotator -->
+  <!-- JS to auto-switch GIFs -->
   <script>
-    const quotes = [
-      "Serve all beings as service to God. — Ramanujacharya",
-      "Truth alone triumphs.",
-      "Let compassion be your religion.",
-      "Unity through service and devotion."
-    ];
-    let i = 0;
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".slide");
+
     setInterval(() => {
-      document.getElementById("quoteBox").innerText = quotes[i];
-      i = (i + 1) % quotes.length;
-    }, 4000);
+      slides[currentSlide].classList.remove("active");
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add("active");
+    }, 4000); // Change every 5 seconds
   </script>
 
 </body>
