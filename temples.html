@@ -6,166 +6,160 @@
   <title>Temples of Telangana</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
-      background-color: #f5f5f5;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f5f5f5;
     }
-    nav {
-      background-color: #4a148c;
-      padding: 1rem;
+    header {
+      background-color: #7b2cbf;
       color: white;
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    nav h1 {
-      margin: 0;
-      font-size: 1.5rem;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-      margin: 0;
-    }
-    nav ul li a {
+    nav a {
       color: white;
+      margin-left: 1rem;
       text-decoration: none;
+      font-weight: bold;
     }
-
-    .container {
-      padding: 1rem 2rem;
+    nav a:hover {
+      text-decoration: underline;
     }
-
-    select {
-      padding: 0.5rem;
-      margin-bottom: 1.5rem;
-      width: 100%;
-      max-width: 400px;
+    h1 {
+      text-align: center;
+      margin: 1rem 0;
     }
-
-    .temple {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #ccc;
+    .filter-section {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .temples-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
       padding: 1rem;
-      margin-bottom: 2rem;
     }
-
-    .temple img {
+    .temple-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+      width: 350px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+    .temple-card:hover {
+      transform: translateY(-5px);
+    }
+    .temple-card img {
       width: 100%;
-      max-height: 300px;
+      height: 200px;
       object-fit: cover;
-      border-radius: 8px;
     }
-
+    .temple-info {
+      padding: 1rem;
+    }
     iframe {
       width: 100%;
-      height: 300px;
+      height: 200px;
       border: none;
-      margin-top: 1rem;
-      border-radius: 8px;
     }
-
-    .temple h2 {
-      margin: 0.5rem 0;
-    }
-
     @media (max-width: 600px) {
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
+      .temple-card {
+        width: 90%;
       }
     }
   </style>
 </head>
 <body>
 
+<header>
+  <div><strong>Sri Vaishnava Seva Samithi</strong></div>
   <nav>
-    <h1>Sri Vaishnava Seva Samithi</h1>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="Vaishnava1.html">Family Registration</a></li>
-      <li><a href="donations.html">Donations</a></li>
-      <li><a href="events.html">Events</a></li>
-      <li><a href="temples.html">Temples</a></li>
-    </ul>
+    <a href="index.html">Home</a>
+    <a href="registration.html">Family Registration</a>
+    <a href="donations.html">Donations</a>
+    <a href="temples.html">Temples</a>
+    <a href="events.html">Events</a>
   </nav>
+</header>
 
-  <div class="container">
-    <h2>Explore Temples in Telangana</h2>
-    <select id="districtDropdown" onchange="filterTemples()">
-      <option value="All">All Districts</option>
-    </select>
+<h1>Temples of Telangana</h1>
 
-    <div id="templesContainer"></div>
-  </div>
+<div class="filter-section">
+  <label for="districtSelect"><strong>Select District:</strong></label>
+  <select id="districtSelect" onchange="filterTemples()">
+    <option value="All">All Districts</option>
+  </select>
+</div>
 
-  <script>
-    const temples = [
-      {
-        district: "Hyderabad",
-        name: "Statue of Equality – Ramanuja",
-        image: "https://i0.wp.com/www.tusktravel.com/blog/wp-content/uploads/2022/02/Statue-of-equality.jpg?fit=1230%2C757&ssl=1",
-        description: "World’s second-tallest sitting statue, dedicated to Sri Ramanujacharya.",
-        map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.5766380190415!2d78.3194084750134!3d17.478541683050057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb95f4be3f1739%3A0x98f9f84f1874f8d9!2sStatue%20of%20Equality!5e0!3m2!1sen!2sin!4v1691588203944!5m2!1sen!2sin"
-      },
-      {
-        district: "Siddipet",
-        name: "Sri Lakshmi Narasimha Swamy Temple",
-        image: "https://temple.yatradham.org/public/Product/temple/temple_Fk1IOXiZ_202408041546580.jpg",
-        description: "A revered hilltop temple dedicated to Lord Narasimha.",
-        map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3801.421923185324!2d78.84832797501617!3d17.52152358302063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bccbabf18c95ad3%3A0xa9a88b10ad4a1957!2sSri%20Lakshmi%20Narasimha%20Swamy%20Temple!5e0!3m2!1sen!2sin!4v1691588203944!5m2!1sen!2sin"
-      },
-      {
-        district: "Yadadri Bhuvanagiri",
-        name: "Yadagirigutta Sri Lakshmi Narasimha Temple",
-        image: "https://temple.yatradham.org/public/Product/temple/temple_Fk1IOXiZ_202408041546580.jpg",
-        description: "Major pilgrimage site, beautifully renovated with intricate architecture.",
-        map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3802.9980486747686!2d79.05370187501449!3d17.564753282987396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcd4fc5dd37532f%3A0x3f9f12fce00b0b84!2sYadagirigutta%20Sri%20Lakshmi%20Narasimha%20Swamy%20Temple!5e0!3m2!1sen!2sin!4v1691588203944!5m2!1sen!2sin"
-      }
-      // Add 30 more temples below following the same structure
-    ];
+<div class="temples-grid" id="templesContainer"></div>
 
-    const districtDropdown = document.getElementById("districtDropdown");
-    const templesContainer = document.getElementById("templesContainer");
+<script>
+  const temples = [
+    {
+      district: "Hyderabad",
+      name: "Statue of Equality (Ramanuja)",
+      description: "A 216-feet tall statue of Sri Ramanuja Charyulu, located at Muchintal.",
+      image: "https://upload.wikimedia.org/wikipedia/commons/3/3d/Statue_of_Equality_-_Ramanuja.jpg",
+      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.0347794164567!2d78.317989!3d17.447254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93dc6c9c30f7%3A0x3390eb011fd17eb5!2sStatue%20of%20Equality!5e0!3m2!1sen!2sin!4v1700000000000"
+    },
+    {
+      district: "Yadadri Bhuvanagiri",
+      name: "Yadadri Sri Lakshmi Narasimha Swamy Temple",
+      description: "Famous hilltop temple dedicated to Lord Narasimha.",
+      image: "https://upload.wikimedia.org/wikipedia/commons/d/d6/Yadagirigutta_Temple.jpg",
+      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3813.0339643703133!2d78.9395!3d17.5627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bccdc1ac6f3f70f%3A0xf20a97a4340eddfa!2sSri%20Lakshmi%20Narasimha%20Swamy%20Temple%2C%20Yadagirigutta!5e0!3m2!1sen!2sin!4v1700000000001"
+    },
+    {
+      district: "Mulugu",
+      name: "Ramappa Temple",
+      description: "UNESCO World Heritage site built in 13th century Kakatiya style.",
+      image: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Ramappa_Temple.jpg",
+      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3793.1341315819985!2d79.942228!3d18.237751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a332a0a39089c5f%3A0x7b273f2c02f49cbf!2sRamappa%20Temple!5e0!3m2!1sen!2sin!4v1700000000002"
+    },
+    // 👉 Add remaining 31 temples similarly below...
+  ];
 
-    // Populate district options
-    const districts = [...new Set(temples.map(t => t.district))].sort();
-    districts.forEach(d => {
-      const opt = document.createElement("option");
-      opt.value = d;
-      opt.textContent = d;
-      districtDropdown.appendChild(opt);
+  function renderTemples(data) {
+    const container = document.getElementById("templesContainer");
+    container.innerHTML = "";
+    data.forEach(t => {
+      container.innerHTML += `
+        <div class="temple-card" data-district="${t.district}">
+          <img src="${t.image}" alt="${t.name}" onerror="this.src='https://via.placeholder.com/350x200?text=No+Image'"/>
+          <div class="temple-info">
+            <h3>${t.name}</h3>
+            <p><strong>District:</strong> ${t.district}</p>
+            <p>${t.description}</p>
+          </div>
+          <iframe src="${t.map}" allowfullscreen></iframe>
+        </div>
+      `;
     });
+    populateDropdown();
+  }
 
-    function filterTemples() {
-      const selected = districtDropdown.value;
-      templesContainer.innerHTML = "";
+  function populateDropdown() {
+    const dropdown = document.getElementById("districtSelect");
+    const districts = ["All", ...new Set(temples.map(t => t.district))];
+    dropdown.innerHTML = districts.map(d => `<option value="${d}">${d}</option>`).join("");
+  }
 
-      const filtered = selected === "All" ? temples : temples.filter(t => t.district === selected);
-
-      filtered.forEach(t => {
-        const div = document.createElement("div");
-        div.className = "temple";
-        div.innerHTML = `
-          <h2>${t.name}</h2>
-          <strong>District:</strong> ${t.district}
-          <p>${t.description}</p>
-          <img src="${t.image}" alt="${t.name}" />
-          <iframe src="${t.map}" loading="lazy" allowfullscreen></iframe>
-        `;
-        templesContainer.appendChild(div);
-      });
+  function filterTemples() {
+    const selected = document.getElementById("districtSelect").value;
+    if (selected === "All") {
+      renderTemples(temples);
+    } else {
+      renderTemples(temples.filter(t => t.district === selected));
     }
+  }
 
-    // Initial load
-    filterTemples();
-  </script>
+  // Initial render
+  renderTemples(temples);
+</script>
 
 </body>
 </html>
