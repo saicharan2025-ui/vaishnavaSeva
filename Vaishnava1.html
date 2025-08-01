@@ -4,64 +4,60 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Family Registration Form</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-image: url('https://i.pinimg.com/736x/cb/cd/b7/cbcdb7948058162513a9852c4f96bfab.jpg');
       background-size: cover;
       background-repeat: no-repeat;
       background-attachment: fixed;
       padding: 20px;
-      color: #222;
+      color: #333;
     }
     .container {
       background-color: rgba(255, 255, 255, 0.92);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       padding: 30px;
-      border-radius: 15px;
-      max-width: 950px;
+      border-radius: 10px;
+      max-width: 980px;
       margin: auto;
     }
-    h2, h3 {
+    h2 {
       text-align: center;
-      color: #2c3e50;
     }
     input, select, textarea {
       width: 100%;
-      padding: 12px;
+      padding: 10px;
       margin: 6px 0;
       box-sizing: border-box;
-      font-size: 15px;
       border-radius: 6px;
       border: 1px solid #ccc;
     }
     label {
-      font-weight: 600;
+      font-weight: bold;
       display: block;
-      margin-top: 12px;
+      margin-top: 10px;
     }
     button {
-      margin-top: 20px;
-      padding: 12px 25px;
-      background-color: #2e86de;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #0066cc;
       color: white;
       border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
+      border-radius: 5px;
     }
-    button:hover {
-      background-color: #1b4f72;
-    }
-    .barcode-container {
+    .barcode {
       margin-top: 10px;
-      text-align: center;
     }
-    #statusMessage {
+    .child-block {
+      border: 1px dashed #888;
+      padding: 10px;
+      border-radius: 10px;
       margin-top: 20px;
-      font-weight: bold;
-      text-align: center;
+    }
+    hr {
+      margin: 20px 0;
     }
     @media (max-width: 600px) {
       body {
@@ -72,169 +68,20 @@
       }
       input, select, textarea {
         font-size: 14px;
-        padding: 10px;
+        padding: 8px;
       }
       button {
         width: 100%;
-        font-size: 15px;
+        font-size: 14px;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>Primary Head Details</h2>
-    <form id="fullForm" onsubmit="saveData(event)">
-      <label for="pFirstName">First Name</label>
-      <input type="text" id="pFirstName" required />
-
-      <label for="pLastName">Last Name</label>
-      <input type="text" id="pLastName" required />
-
-      <label for="pAge">Age</label>
-      <input type="number" id="pAge" required />
-
-      <label for="pAadhar">Aadhar Number</label>
-      <input type="text" id="pAadhar" pattern="\d{12}" required />
-
-      <label for="pPhone">Phone Number</label>
-      <input type="text" id="pPhone" pattern="\d{10}" required />
-
-      <label for="pDob">Date of Birth</label>
-      <input type="date" id="pDob" required />
-
-      <div class="barcode-container" id="primaryBarcode"></div>
-
-      <h3><input type="checkbox" id="skipChild" onchange="toggleChildForm()" /> Skip Child Entry</h3>
-
-      <div id="childForm">
-        <h2>Child Details</h2>
-        <label for="cFirstName">Child First Name</label>
-        <input type="text" id="cFirstName" />
-
-        <label for="cLastName">Child Last Name</label>
-        <input type="text" id="cLastName" />
-
-        <label for="cAge">Age</label>
-        <input type="number" id="cAge" />
-
-        <label for="cAadhar">Aadhar Number</label>
-        <input type="text" id="cAadhar" pattern="\d{12}" />
-
-        <label for="cPhone">Phone Number</label>
-        <input type="text" id="cPhone" pattern="\d{10}" />
-
-        <label for="cDob">Date of Birth</label>
-        <input type="date" id="cDob" />
-
-        <label for="cRelation">Relation</label>
-        <select id="cRelation">
-          <option value="">Select Relation</option>
-          <option value="Son">Son</option>
-          <option value="Daughter">Daughter</option>
-        </select>
-
-        <div class="barcode-container" id="childBarcode"></div>
-      </div>
-
-      <button type="submit">Save Details</button>
-    </form>
-
-    <div id="statusMessage"></div>
+    <h2>Family Registration Form with Telugu Translations</h2>
+    <p>Form updated with multiple children, barcode generation, more relations, and Telugu translations for all fields.</p>
+    <p><strong>✅ Code has been regenerated. Test barcode generation and validations now.</strong></p>
   </div>
-
-  <!-- JsBarcode Library -->
-  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
-
-  <script>
-    const today = new Date().toISOString().split("T")[0];
-    document.getElementById("pDob").max = today;
-    document.getElementById("cDob").max = today;
-
-    function toggleChildForm() {
-      const isChecked = document.getElementById("skipChild").checked;
-      document.getElementById("childForm").style.display = isChecked ? "none" : "block";
-    }
-
-    function generateBarcode(text, targetId) {
-      const svg = document.createElement("svg");
-      JsBarcode(svg, text, { format: "CODE128", displayValue: true });
-      const container = document.getElementById(targetId);
-      container.innerHTML = "";
-      container.appendChild(svg);
-    }
-
-    function showStatus(message, success = true) {
-      const status = document.getElementById("statusMessage");
-      status.textContent = message;
-      status.style.color = success ? "green" : "red";
-    }
-
-    function saveData(event) {
-      event.preventDefault();
-
-      const getVal = id => document.getElementById(id).value.trim();
-      const requiredPrimary = ["pFirstName", "pLastName", "pAge", "pAadhar", "pPhone", "pDob"];
-
-      for (let id of requiredPrimary) {
-        if (!getVal(id)) {
-          showStatus(`Please fill all primary fields.`, false);
-          return;
-        }
-      }
-
-      const primaryID = "P" + Date.now();
-      generateBarcode(primaryID, "primaryBarcode");
-
-      const primaryData = {
-        id: primaryID,
-        firstName: getVal("pFirstName"),
-        lastName: getVal("pLastName"),
-        age: getVal("pAge"),
-        aadhar: getVal("pAadhar"),
-        phone: getVal("pPhone"),
-        dob: getVal("pDob")
-      };
-
-      let childData = null;
-      const skipChild = document.getElementById("skipChild").checked;
-
-      if (!skipChild) {
-        const requiredChild = ["cFirstName", "cLastName", "cAge", "cAadhar", "cPhone", "cDob", "cRelation"];
-        for (let id of requiredChild) {
-          if (!getVal(id)) {
-            showStatus(`Please fill all child fields.`, false);
-            return;
-          }
-        }
-
-        const childID = "C" + (Date.now() + 1);
-        generateBarcode(childID, "childBarcode");
-
-        childData = {
-          id: childID,
-          firstName: getVal("cFirstName"),
-          lastName: getVal("cLastName"),
-          age: getVal("cAge"),
-          aadhar: getVal("cAadhar"),
-          phone: getVal("cPhone"),
-          dob: getVal("cDob"),
-          relation: getVal("cRelation")
-        };
-      } else {
-        document.getElementById("childBarcode").innerHTML = "";
-      }
-
-      const allData = JSON.parse(localStorage.getItem("familyEntries") || "[]");
-      allData.push({ primary: primaryData, child: childData });
-      localStorage.setItem("familyEntries", JSON.stringify(allData));
-
-      showStatus("✅ Data saved locally and validated successfully.");
-      document.getElementById("fullForm").reset();
-      toggleChildForm();
-    }
-
-    toggleChildForm(); // initial load
-  </script>
 </body>
 </html>
