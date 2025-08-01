@@ -2,170 +2,200 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Events - Sri Vaishnava Seva Samithi</title>
   <style>
     body {
-      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #fdfdfd;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f6fa;
     }
 
-    nav {
-      background-color: #4a148c;
-      color: white;
-      padding: 15px 20px;
+    /* Navbar */
+    .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
+      background-color: #4a148c;
+      color: #fff;
+      padding: 15px 30px;
     }
 
-    nav .logo {
-      font-size: 20px;
-      font-weight: bold;
+    .navbar h1 {
+      margin: 0;
+      font-size: 22px;
     }
 
-    nav .nav-links a {
+    .nav-links a {
       color: white;
+      margin-left: 20px;
       text-decoration: none;
-      margin: 0 10px;
-      font-size: 14px;
+      font-weight: 500;
     }
 
-    nav .nav-links a:hover {
+    .nav-links a:hover {
       text-decoration: underline;
     }
 
-    .container {
-      max-width: 1000px;
+    /* Events */
+    .events-container {
+      max-width: 1100px;
       margin: auto;
-      padding: 20px;
-    }
-
-    .section-title {
-      font-size: 24px;
-      color: #4a148c;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 8px;
+      padding: 30px 20px;
     }
 
     .event-card {
-      background: #fff;
+      background: white;
       border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       padding: 20px;
       margin-bottom: 20px;
-      transition: transform 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
     }
 
     .event-card:hover {
-      transform: scale(1.01);
+      transform: scale(1.02);
     }
 
     .event-title {
-      font-size: 18px;
-      font-weight: bold;
+      font-size: 20px;
+      color: #4a148c;
+      margin-bottom: 10px;
+    }
+
+    .event-date, .event-location {
+      font-size: 15px;
+      color: #555;
+    }
+
+    .event-description {
+      margin-top: 10px;
       color: #333;
     }
 
-    .event-date,
-    .event-location {
-      font-size: 14px;
-      color: #555;
-      margin: 5px 0;
-    }
-
-    .event-desc {
-      font-size: 15px;
-      color: #444;
+    .event-img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
       margin-top: 10px;
     }
 
-    .event-img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-  margin-top: 10px;
-}
-
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-      margin-top: 20px;
+    /* Gallery */
+    .gallery-section {
+      padding: 40px 20px;
+      background-color: #fff;
     }
 
-    .gallery img {
+    .gallery-section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #4a148c;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .gallery-grid img {
       width: 100%;
-      height: 120px;
+      border-radius: 8px;
+      height: 200px;
       object-fit: cover;
-      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* WhatsApp Chat Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      background-color: #25d366;
+      padding: 10px;
+      border-radius: 50px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
+
+    .whatsapp-float img {
+      width: 40px;
+      height: 40px;
     }
 
     @media (max-width: 600px) {
-      .event-title {
-        font-size: 16px;
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        margin-top: 10px;
       }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <div class="logo">Sri Vaishnava Seva Samithi</div>
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1>Sri Vaishnava Seva Samithi</h1>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a href="Vaishnava1.html">Family Registration</a>
+      <a href="family-registration.html">Family Registration</a>
       <a href="temples.html">Temples</a>
-      <a href="donations.html">Donations</a>
       <a href="events.html">Events</a>
+      <a href="donations.html">Donations</a>
     </div>
-  </nav>
+  </div>
 
-  <div class="container">
-    <div class="section-title">🗓️ Upcoming Events</div>
-
-    <div class="event-card">
-      <div class="event-title">Yadadri Temple Visit</div>
-      <div class="event-date">📅 August 15, 2025 - 7:00 AM</div>
-      <div class="event-location">📍 Yadagirigutta, Telangana</div>
-      <div class="event-desc">
-        Join us for a community pilgrimage to the holy Yadadri temple with prasad distribution and group chanting.
-      </div>
-      <img src="https://assets.thehansindia.com/h-upload/2025/02/23/1526825-vimana-gopuram.webp" alt="Yadadri Temple" class="event-img" />
-    </div>
+  <!-- Events Section -->
+  <div class="events-container">
+    <h2>Upcoming Events</h2>
 
     <div class="event-card">
       <div class="event-title">Ramanuja Jayanthi Celebrations</div>
-      <div class="event-date">📅 May 2, 2025 - 6:00 PM</div>
+      <div class="event-date">📅 September 5, 2025 — 6:00 PM</div>
       <div class="event-location">📍 Hyderabad, Telangana</div>
-      <div class="event-desc">
-        Celebrate the birth anniversary of Bhagavad Ramanujacharya with devotional singing, prasadam, and cultural programs.
+      <div class="event-description">
+        Join us for devotional chanting, cultural programs, and prasadam distribution.
       </div>
-      <img src="https://i.ytimg.com/vi/PELb2FKZxfE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBfO9-Zc6ZVx6k3rqbbs3cgj7UYog" alt="Ramanuja Jayanthi" class="event-img" />
+      <img class="event-img" src="https://i.ytimg.com/vi/PELb2FKZxfE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBfO9-Zc6ZVx6k3rqbbs3cgj7UYog" alt="Ramanuja Jayanthi" />
     </div>
 
     <div class="event-card">
-      <div class="event-title">Bhagavad Gita Recitation Contest</div>
-      <div class="event-date">📅 October 10, 2025 - 4:00 PM</div>
-      <div class="event-location">📍 Miyapur Community Hall</div>
-      <div class="event-desc">
-        Open contest for kids and adults — recite Gita slokas with meaning. Winners receive certificates and prizes.
+      <div class="event-title">Temple Visit to Yadadri</div>
+      <div class="event-date">📅 August 15, 2025 — 7:00 AM</div>
+      <div class="event-location">📍 Yadagirigutta Temple</div>
+      <div class="event-description">
+        Pilgrimage to Yadadri followed by a group lunch and spiritual discussions.
       </div>
-      <img src="https://media.assettype.com/thebridgechronicle%2F2024-10-15%2Fyvudw23i%2FBhagavad-Gita-Recitation.jpg" alt="Gita Contest" class="event-img" />
+      <img class="event-img" src="https://assets.thehansindia.com/h-upload/2025/02/23/1526825-vimana-gopuram.webp" alt="Yadadri Visit" />
     </div>
+  </div>
 
-    <div class="section-title">📸 Past Events Gallery</div>
-    <div class="gallery">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9X3D_asBCFkpwWEsaf4vKSlLfAX7uQSYXHA&s" alt="Event 1" />
+  <!-- Gallery Section -->
+  <div class="gallery-section">
+    <h2>📷 Past Events Gallery</h2>
+    <div class="gallery-grid"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9X3D_asBCFkpwWEsaf4vKSlLfAX7uQSYXHA&s" alt="Event 1" />
       <img src="https://chinnajeeyar.org/wp-content/uploads/2021/11/Sri-Vaishnava-Aagama-Sampradaya-Seva-Samithi-member-.jpg" alt="Event 2" />
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRskBOLDKkA-109xpUyixr--2txLfkp46ojMw&s" alt="Event 3" />
       <img src="https://chinnajeeyar.org/wp-content/uploads/2024/07/Vaishnava-seva-sangam-rajathotsavam.jpg" alt="Event 4" />
     </div>
   </div>
+
+  <!-- WhatsApp Live Chat Button -->
+  <a href="https://wa.me/919966031085?text=Hello%20Sri%20Vaishnava%20Seva%20Samithi" 
+     class="whatsapp-float" target="_blank">
+    <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp Chat" />
+  </a>
 
 </body>
 </html>
