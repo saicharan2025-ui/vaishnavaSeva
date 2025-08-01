@@ -2,40 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Donations - Sri Vaishnava Seva Samithi</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
-      background-color: #f4f4f4;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f8fc;
     }
+
     nav {
-      background: #004d40;
-      padding: 10px;
-      text-align: center;
+      background-color: #004d40;
+      padding: 12px 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
     }
     nav a {
       color: white;
       text-decoration: none;
-      margin: 10px;
+      padding: 10px 20px;
       font-weight: bold;
+      transition: background 0.3s, transform 0.3s;
     }
     nav a:hover {
-      text-decoration: underline;
+      background: #00695c;
+      transform: scale(1.05);
+      border-radius: 6px;
     }
+
     .container {
-      padding: 40px;
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
       text-align: center;
     }
+
     h1 {
       color: #2e7d32;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #444;
+      font-size: 17px;
+    }
+
+    @media (max-width: 600px) {
+      nav a {
+        font-size: 14px;
+        padding: 8px;
+      }
+
+      .container {
+        margin: 15px;
+        padding: 15px;
+      }
     }
   </style>
 </head>
 <body>
   <nav>
     <a href="index.html">Home</a>
-    <a href="registration.html">Family Registration</a>
+    <a href="Vaishnava1.html">Family Registration</a>
     <a href="donations.html">Donations</a>
     <a href="temples.html">Temples</a>
     <a href="events.html">Events</a>
@@ -43,8 +75,7 @@
 
   <div class="container">
     <h1>Donations</h1>
-    <p>Support our spiritual and social service activities.</p>
-    <p>Donation options and payment integration coming soon.</p>
+    <p>Support our spiritual and community service initiatives. You can contribute through various methods including UPI, bank transfer, or in-person donations at events.</p>
   </div>
 </body>
 </html>
