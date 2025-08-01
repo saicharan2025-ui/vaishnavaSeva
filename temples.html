@@ -3,102 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Temples in Telangana</title>
+  <title>Top Srivaishnava Temples in Telangana</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-    }
-
-    nav {
-      background-color: #4a148c;
-      color: white;
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    nav .logo {
-      font-size: 20px;
-      font-weight: bold;
-    }
-
-    nav .nav-links a {
-      color: white;
-      text-decoration: none;
-      margin: 0 10px;
-      font-size: 15px;
-    }
-
-    nav .nav-links a:hover {
-      text-decoration: underline;
-    }
-
-    .container {
-      padding: 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    select {
-      padding: 10px;
-      font-size: 16px;
-      margin-bottom: 20px;
-      width: 100%;
-      max-width: 300px;
-      display: block;
-    }
-
-    .temples {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .temple-card {
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      overflow: hidden;
-      width: 100%;
-      max-width: 340px;
-      display: none;
-      transition: opacity 0.3s ease-in-out;
-    }
-
-    .temple-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .temple-info {
-      padding: 15px;
-    }
-
-    .temple-info h3 {
-      margin: 0 0 10px;
-      font-size: 18px;
-    }
-
-    iframe {
-      width: 100%;
-      height: 200px;
-      border: none;
-    }
-
-    @media (max-width: 600px) {
-      nav .nav-links {
-        flex-basis: 100%;
-        display: flex;
-        justify-content: center;
-        margin-top: 10px;
-      }
-    }
+    body { margin: 0; font-family: Arial, sans-serif; background: #f5f5f5; }
+    nav { background: #4a148c; color: white; padding: 12px 20px; display: flex; justify-content: space-between; flex-wrap: wrap; }
+    nav .logo { font-size: 20px; font-weight: bold; }
+    nav .nav-links a { color: white; text-decoration: none; margin: 0 10px; }
+    nav .nav-links a:hover { text-decoration: underline; }
+    .container { padding: 20px; max-width: 1000px; margin: auto; }
+    select { padding: 10px; font-size: 16px; margin-bottom: 20px; max-width: 300px; width: 100%; }
+    .temples { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .temple-card { background: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); overflow: hidden; width: 100%; max-width: 340px; display: none; transition: opacity 0.3s; }
+    .temple-card img { width:100%; height:200px; object-fit:cover; }
+    .temple-info { padding: 15px; }
+    .temple-info h3 { margin: 0 0 10px; }
+    iframe { width:100%; height:200px; border:none; }
+    @media (max-width:600px){ nav .nav-links { flex-basis:100%; text-align:center; margin-top:10px; } }
   </style>
 </head>
 <body>
@@ -115,110 +35,107 @@
   </nav>
 
   <div class="container">
-    <h2>Select District</h2>
+    <h2>Srivaishnava Temples in Telangana</h2>
     <select id="districtFilter" onchange="filterTemples()">
-      <option value="All">All Districts</option>
-      <!-- Districts will be auto-filled on page load -->
+      <option value="All">All Temples</option>
     </select>
-
     <div class="temples" id="templeContainer">
- <!-- Hyderabad -->
-  <div class="temple-card" data-district="Hyderabad">
-    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/56/ff/7a/photo0jpg.jpg?w=1200&h=1200&s=1">
-    <div class="temple-info">
-      <h3>Birla Mandir</h3>
-      <p>A magnificent white marble temple dedicated to Lord Venkateshwara, overlooking Hussain Sagar.</p>
-    </div>
-    <iframe src="https://www.google.com/maps?q=birla+mandir+hyderabad&output=embed"></iframe>
-  </div>
+      <!-- Temple placeholders below -->
+      <div class="temple-card" data-district="Hyderabad">
+        <img src="https://staticimg.amarujala.com/assets/images/en.myjyotish.com/2022/01/18/sri-ranganathaswamy-temple_1642525199.jpeg" alt="Sri Ranganathaswamy Temple, Jiyaguda">
+        <div class="temple-info">
+          <h3>Sri Ranganathaswamy Temple, Jiyaguda (Hyderabad)</h3>
+          <p>400‑year‑old Vaishnava temple by the Musi river, built by Sri Nanganur Prathama Peetham; follows Sri Vaishnava tradition.</p>
+        </div>
+        
+      </div>
 
-  <!-- Rangareddy -->
-  <div class="temple-card" data-district="Rangareddy">
-    <img src="https://www.theconsumersfeedback.com/uploads/recent/1739987739-67b61b1b8cbc5.jpg" alt="Chilkur Balaji Temple">
-    <div class="temple-info">
-      <h3>Chilkur Balaji Temple</h3>
-      <p>Also known as Visa Balaji, a famous Lord Venkateshwara temple near Osman Sagar.</p>
-    </div>
-    <iframe src="https://www.google.com/maps?q=Chilkur+Balaji+Temple&output=embed"></iframe>
-  </div>
+      <div class="temple-card" data-district="Yadadri Bhuvanagiri">
+        <img src="https://indiathrills.com/wp-content/uploads/2025/03/Yadadri-Yadagirigutta-Temple-Darshan-Guide.jpg" alt="Sri Lakshmi Narasimha Swamy Temple, Yadadri">
+        <div class="temple-info">
+          <h3>Yadadri Lakshmi Narasimha Swamy Temple</h3>
+          <p>Pancha‑Narasimha shrine following the Tenkalai Sri Vaishnava tradition in Telangana.</p>
+        </div>
+        
+      </div>
 
+      <div class="temple-card" data-district="Bhadradri Kothagudem">
+        <img src="https://temple.yatradham.org/public/Product/temple/temple_0ciG4xn9_202402271449110.jpg" alt="Sri Sita Ramachandra Swamy Temple, Bhadrachalam">
+        <div class="temple-info">
+          <h3>Sri Sita Ramachandra Swamy Temple, Bhadrachalam</h3>
+          <p>Major Divya Desam shrine in Telangana and key Sri Vaishnava deity centre by the Godavari.</p>
+        </div>
+        
+      </div>
 
-  <!-- Yadadri Bhuvanagiri -->
-  <div class="temple-card" data-district="Yadadri Bhuvanagiri">
-    <img src="https://indiathrills.com/wp-content/uploads/2025/03/Yadadri-Yadagirigutta-Temple-Darshan-Guide.jpg" alt="Yadadri Temple">
-    <div class="temple-info">
-      <h3>Yadadri Temple</h3>
-      <p>Renovated Lakshmi Narasimha Swamy temple with rich architecture and pilgrimage significance.</p>
-    </div>
-    <iframe src="https://www.google.com/maps?q=Yadadri+temple&output=embed"></iframe>
-  </div>
+      <div class="temple-card" data-district="Mancherial">
+        <img src="https://avathioutdoors.gumlet.io/travelGuide/dev/adilabad_P1559.jpg" alt="Gudem Gutta Satyanarayana Swamy Temple">
+        <div class="temple-info">
+          <h3>Gudem Gutta Satyanarayana Swamy Temple (Mancherial)</h3>
+          <p>Hill‑top Satyanarayana Swamy temple on the banks of Godavari, called “Telangana’s Annavaram”.</p>
+        </div>
+        
+      </div>
 
-  <!-- Nalgonda -->
-  <div class="temple-card" data-district="Nalgonda">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/11th_12th_century_Chaya_Someshwara_Temple%2C_Panagal_Telangana_India_-_46.jpg" alt="Chaya Someshwara Temple">
-    <div class="temple-info">
-      <h3>Chaya Someshwara Temple</h3>
-      <p>Famous for its mysterious shadow architecture, located in Panagal, Nalgonda.</p>
-    </div>
-    <iframe src="https://www.google.com/maps?q=Chaya+Someswara+Temple+Nalgonda&output=embed"></iframe>
-  </div>
+      <div class="temple-card" data-district="Vikarabad">
+        <img src="https://content.jdmagicbox.com/v2/comp/vikarabad/v7/040pxx40.xx40.221204204846.e6v7/catalogue/ananthapadmanabha-swamy-temple-kaman-vikarabad-vikarabad-temples-zJBVflxyu8.jpg" alt="Ananthagiri Temple, Vikarabad">
+        <div class="temple-info">
+          <h3>Anantha Padmanabha Swamy Temple, Ananthagiri (Vikarabad)</h3>
+          <p>Lord Vishnu temple in scenic Ananthagiri hills, established in Sri Vaishnava tradition.</p>
+        </div>
+        
+      </div>
 
-  <!-- Khammam -->
-  <div class="temple-card" data-district="Khammam">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8x_556bBEMYK2EwyfGUoRcbJ-IR_ZBqUl0g&s" alt="Narasimha Swamy Temple">
-    <div class="temple-info">
-      <h3>Narasimha Swamy Temple</h3>
-      <p>Located on a hillock, this temple is a famous site for Lord Narasimha devotees.</p>
-    </div>
-    <iframe src="https://www.google.com/maps?q=Narasimha+Swamy+Temple+Khammam&output=embed"></iframe>
-  </div>
+      <div class="temple-card" data-district="Jagtial">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Lakshmi_Narasimha_Swamy_temple%2C_Dharmapuri_Telangana_-_33.jpg" alt="Dharmapuri Narasimha Swamy Temple">
+        <div class="temple-info">
+          <h3>Dharmapuri Sri Lakshmi Narasimha Temple (Jagtial)</h3>
+          <p>Historic Narasimha temple on Godavari bank known as “Dakshina Kashi”.</p>
+        </div>
+       
+      </div>
 
-  <!-- Warangal -->
-  <div class="temple-card" data-district="Warangal">
-    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/bd/4a/f9/most-viewable-place.jpg?w=1200&h=-1&s=1" alt="Thousand Pillar Temple">
-    <div class="temple-info">
-      <h3>Thousand Pillar Temple</h3>
-      <p>A 12th-century marvel in Warangal dedicated to Shiva, Vishnu, and Surya.</p>
-    </div>
-    <iframe src="https://www.google.com/maps?q=1000+pillar+temple+warangal&output=embed"></iframe>
-  </div>
+      <div class="temple-card" data-district="Karimnagar">
+        <img src="https://thetempleguru.com/wp-content/uploads/2024/08/Sri-Raja-Rajeshwara-Swamy-Temple-Vemulawada-6.jpg" alt="Vemulawada Rajarajeshwara Temple">
+        <div class="temple-info">
+          <h3>Vemulawada Rajarajeshwara Temple (Karimnagar)</h3>
+          <p>Shiva temple but revered by Sri Vaishnavas as Abhimana sthalam in Telangana.</p>
+        </div>
+        
+      </div>
 
-  <!-- Hanamkonda -->
-  <div class="temple-card" data-district="Hanamkonda">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRwwf2c8EAT7teuccw35IO_iupl01Q4F4WRbAc3KueVMuXGnc-xC2iSiGe1DuqtHC5stCctHaCo67RKnpMnGCds5PkzSf4OB0_6BLvMC6dVwAuTTpQ_vhQW0ZWJcqmiYfuZsF-eYZiW-fN/s1600/Bhadrakali+temple+1.jpg">
-    <div class="temple-info">
-      <h3>Bhadrakali Temple</h3>
-      <p>One of the oldest temples dedicated to Goddess Bhadrakali, located on a hilltop near Warangal.</p>
-    </div>
-    <iframe src="https://www.google.com/maps?q=bhadrakali+temple+hanamkonda&output=embed"></iframe>
-  </div>
+      <div class="temple-card" data-district="Warangal">
+        <img src="https://www.trawell.in/admin/images/thumbs/157241984Ramappa_Main_thumb.jpg" alt="Sri Veeranarayana Swamy Temple, Kolanupaka">
+        <div class="temple-info">
+          <h3>Sri Veeranarayana Swamy Temple, Kolanupaka (Warangal)</h3>
+          <p>Vishnu shrine dating to 403 AD, significant Vaishnava heritage site near Warangal.</p>
+        </div>
+       
+      </div>
 
-  <!-- Mahabubnagar -->
-  <div class="temple-card" data-district="Mahabubnagar">
-    <img src="https://content.jdmagicbox.com/comp/mahabubnagar/k6/9999p8545.8545.110130112951.d6k6/catalogue/uma-maheswaram-temple-achampet-mahabubnagar-temples-cu91pbnwxa.jpg" alt="Umamaheshwaram Temple">
-    <div class="temple-info">
-      <h3>Umamaheshwaram Temple</h3>
-      <p>Located in the Nallamala forest, it is the northern gateway to Srisailam and a serene Shiva temple.</p>
-    </div>
-    <iframe src="https://www.google.com/maps?q=Umamaheshwaram+Temple&output=embed"></iframe>
-  </div>
+      <div class="temple-card" data-district="Mahabubnagar">
+        <img src="https://touringwithpk.com/wp-content/uploads/2021/06/Dec2017-007a.jpg" alt="Navabrahma (Jogulamba) Temples, Alampur">
+        <div class="temple-info">
+          <h3>Alampur Navabrahma / Jogulamba Temple</h3>
+          <p>A historic Vaishnava‑Shaiva cluster and also a Shakti Peeth in Jogulamba Gadwal.</p>
+        </div>
+       
+      </div>
 
-  <!-- Nagarkurnool -->
-  <div class="temple-card" data-district="Nagarkurnool">
-    <img src="https://www.trawell.in/admin/images/upload/076340342Yadagirigutta_Main.jpg" alt="Jetaprolu Narasimha Swamy Temple">
-    <div class="temple-info">
-      <h3>Jetaprolu Narasimha Swamy Temple</h3>
-      <p>Historic temple on the banks of Krishna river near Kollapur.</p>
-    </div>
-    <iframe src="https://www.google.com/maps?q=Jetaprolu+Narasimha+Swamy+Temple&output=embed"></iframe>
-  </div>
+      <div class="temple-card" data-district="Siddipet">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN8QVBM873HD7dqEllom7D2FmTOrItpK-R6Q&s" alt="Sri Vidya Saraswati Temple, Wargal">
+        <div class="temple-info">
+          <h3>Sri Vidya Saraswati Temple, Wargal (Siddipet)</h3>
+          <p>Prominent Sri Vaishnava Saraswati shrine, especially for Aksharabhyasam ceremonies.</p>
+        </div>
+       
+      </div>
     </div>
   </div>
 
   <script>
     window.onload = () => {
-      const container = document.getElementById("templeContainer");
-      const cards = container.querySelectorAll(".temple-card");
+      const cards = document.querySelectorAll(".temple-card");
       const select = document.getElementById("districtFilter");
       const districts = new Set();
 
@@ -226,28 +143,24 @@
         districts.add(card.dataset.district);
       });
 
-      [...districts].sort().forEach(district => {
+      [...districts].sort().forEach(d => {
         const option = document.createElement("option");
-        option.value = district;
-        option.textContent = district;
+        option.value = d;
+        option.textContent = d;
         select.appendChild(option);
       });
 
-      // Show all temples initially
-      cards.forEach(card => card.style.display = "block");
+      // show all by default
+      cards.forEach(c => c.style.display = "block");
     };
 
     function filterTemples() {
       const selected = document.getElementById("districtFilter").value;
-      const cards = document.querySelectorAll(".temple-card");
-
-      cards.forEach(card => {
-        if (selected === "All" || card.dataset.district === selected) {
-          card.style.display = "block";
-          card.style.opacity = 0;
-          setTimeout(() => card.style.opacity = 1, 100);
-        } else {
-          card.style.display = "none";
+      document.querySelectorAll(".temple-card").forEach(c => {
+        c.style.display = (selected === "All" || c.dataset.district === selected) ? "block" : "none";
+        c.style.opacity = 0;
+        if (c.style.display === "block") {
+          setTimeout(() => { c.style.opacity = 1; }, 50);
         }
       });
     }
