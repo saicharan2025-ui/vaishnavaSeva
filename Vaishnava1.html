@@ -6,10 +6,33 @@
   <title>Family Registration</title>
   <script src="https://cdn.jsdelivr.net/jsbarcode/3.11.5/JsBarcode.all.min.js"></script>
   <style>
-    label { display: block; margin-top: 10px; }
-    input, select { width: 100%; padding: 5px; margin-top: 5px; }
-    .barcode-container { margin: 20px 0; }
-    #statusMessage { font-weight: bold; margin-top: 20px; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      max-width: 600px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, select {
+      width: 100%;
+      padding: 6px;
+      margin-top: 5px;
+    }
+    .barcode-container {
+      margin: 20px 0;
+      text-align: center;
+    }
+    #statusMessage {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    h2, h3 {
+      margin-top: 30px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
   </style>
 </head>
 <body>
@@ -58,7 +81,7 @@
       <input type="date" id="cDob" />
 
       <label for="cRelation">Relation</label>
-      <select id="cRelation" required>
+      <select id="cRelation">
         <option value="">Select Relation</option>
         <option value="Son">Son</option>
         <option value="Daughter">Daughter</option>
@@ -123,7 +146,9 @@
       };
 
       let childData = null;
-      if (!document.getElementById("skipChild").checked) {
+      const skipChild = document.getElementById("skipChild").checked;
+
+      if (!skipChild) {
         const requiredChild = ["cFirstName", "cLastName", "cAge", "cAadhar", "cPhone", "cDob", "cRelation"];
         for (let id of requiredChild) {
           if (!getVal(id)) {
@@ -132,7 +157,7 @@
           }
         }
 
-        const childID = "C" + Date.now();
+        const childID = "C" + (Date.now() + 1); // ensure different timestamp
         generateBarcode(childID, "childBarcode");
 
         childData = {
@@ -149,7 +174,6 @@
         document.getElementById("childBarcode").innerHTML = "";
       }
 
-      // Save to localStorage
       const allData = JSON.parse(localStorage.getItem("familyEntries") || "[]");
       allData.push({ primary: primaryData, child: childData });
       localStorage.setItem("familyEntries", JSON.stringify(allData));
@@ -159,7 +183,7 @@
       toggleChildForm();
     }
 
-    toggleChildForm(); // initialize child form state
+    toggleChildForm(); // initial toggle
   </script>
 </body>
 </html>
