@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Donations - Sri Vaishnava Seva Samithi</title>
   <style>
     body {
@@ -18,6 +19,7 @@
       justify-content: center;
       flex-wrap: wrap;
     }
+
     nav a {
       color: white;
       text-decoration: none;
@@ -25,6 +27,7 @@
       font-weight: bold;
       transition: background 0.3s, transform 0.3s;
     }
+
     nav a:hover {
       background: #00695c;
       transform: scale(1.05);
@@ -37,7 +40,7 @@
       padding: 20px;
       background: white;
       border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
       text-align: center;
     }
 
@@ -64,6 +67,7 @@
     }
   </style>
 </head>
+
 <body>
   <nav>
     <a href="index.html">Home</a>
@@ -76,7 +80,52 @@
 
   <div class="container">
     <h1>Donations</h1>
-    <p>Support our spiritual and community service initiatives. You can contribute through various methods including UPI, bank transfer, or in-person donations at events.</p>
+    <p>Support our spiritual and community service initiatives. You can contribute through various methods including
+      UPI, bank transfer, or in-person donations at events.</p>
+   
   </div>
+  <button class="lang-toggle" onclick="toggleQRCode()">UPI QR Code</button>
+  <div id="qrcode"></div>
+  <button onclick="showCardForm()">Pay with Card</button>
+  <div id="cardForm">
+    <label>Cardholder Name:
+      <input type="text" placeholder="Name on card" />
+    </label>
+    <label>Card Number:
+      <input type="text" placeholder="1234 5678 9012 3456" />
+    </label>
+    <label>Expiry Date:
+      <input type="text" placeholder="MM/YY" />
+    </label>
+    <label>CVV:
+      <input type="password" placeholder="123" />
+    </label>
+    <button>Submit</button>
+  </div>
+  
+  <script>
+
+    function toggleQRCode() {
+      const qrcodeContainer = document.getElementById("qrcode");
+      qrcodeContainer.innerHTML = ""; // Clear existing QR code if any
+
+      const qrText = "upi://pay?pa=chilakamarripavan-1@okhdfcbank&pn=Pavan&am=100&cu=INR"; // Change this to your dynamic link
+
+      new QRCode(qrcodeContainer, {
+        text: qrText,
+        width: 200,
+        height: 200,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+
+    function showCardForm() {
+      document.getElementById("cardForm").style.display = "block";
+    }
+
+  </script>
 </body>
+
 </html>
