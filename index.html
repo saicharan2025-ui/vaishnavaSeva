@@ -17,47 +17,92 @@
       overflow: hidden;
     }
 
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 100;
-      background-color: rgba(0, 0, 0, 0.6);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 20px;
-    }
+    /* Navbar Base */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: rgba(0, 0, 0, 0); /* Fully transparent */
+  color: white;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  font-family: 'Segoe UI', sans-serif;
+}
 
-    .navbar h1 {
-      color: white;
-      font-size: 1.4rem;
-    }
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: gold;
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.8);
+}
 
-    .hamburger {
-      display: none;
-      font-size: 1.5rem;
-      color: white;
-      cursor: pointer;
-      background: none;
-      border: none;
-    }
+.menu-icon {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: white;
+}
 
-    .nav-links {
-      display: flex;
-      gap: 15px;
-    }
+/* Button-like Navigation Links */
+/* Button-style nav links */
+.nav-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
 
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
+.nav-links a {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 10px 18px;
+  border: 2px solid rgba(255, 215, 0, 0.9);
+  border-radius: 30px;
+  background-color: rgba(255, 215, 0, 0.15);
+  color: white;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
 
-    .nav-links a:hover {
-      text-decoration: underline;
-    }
+.nav-links a:hover {
+  background-color: rgba(255, 215, 0, 0.85);
+  color: #000;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 1);
+  transform: scale(1.05);
+}
+
+/* Mobile Responsive Menu */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.9); /* dark mobile dropdown */
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    border-radius: 0 0 10px 10px;
+    padding: 15px;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links a {
+    margin: 10px 0;
+    text-align: left;
+  }
+}
+
 
     .slideshow {
       position: relative;
@@ -135,19 +180,41 @@
     }
   </style>
 </head>
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById("navLinks");
+    nav.classList.toggle("show");
+  }
+
+  // Auto-close on link click (for mobile)
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById("navLinks").classList.remove("show");
+    });
+  });
+</script>
 <body>
 
   <!-- Navbar with Hamburger -->
-  <div class="navbar">
-    <h1>Sri Vaishnava Seva Samithi</h1>
-    <button class="hamburger" onclick="toggleMenu()">☰</button>
+  <!-- Navigation Bar -->
+<!-- Transparent Navigation Bar -->
+<header>
+  <nav class="navbar">
+    <div class="logo">Sri Vaishnava Seva Samithi</div>
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
     <div class="nav-links" id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="Registration.html">Registrations</a>
-      <a href="temples.html">Temples</a>
-      <a href="events.html">Events</a>
-      <a href="donations.html">Donations</a>
+      <a href="index.html">🏠 Home</a>
+      <a href="Registration.html">👪 Family Registration</a>
+      <a href="temples.html">🛕 Temples</a>
+      <a href="events.html">📅 Events</a>
+      <a href="donations.html">💰 Donations</a>
     </div>
+  </nav>
+</header>
+
+  </nav>
+</header>
+
   </div>
 
   <!-- Slideshow -->
