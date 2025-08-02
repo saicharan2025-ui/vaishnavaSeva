@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Legal Consultation - Sri Vaishnava Seva Samithi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #f0f0f0, #e6e6fa);
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-weight: bold;
+      color: #4a148c;
+      font-size: 1.3em;
+    }
+
+    .nav-links a {
+      color: #4a148c;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+
+    .nav-links a:hover {
+      color: #6a1b9a;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.5em;
+      color: #4a148c;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.95);
+        display: none;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+      }
+    }
+
+    h2 {
+      text-align: center;
+      color: #4a148c;
+      margin-top: 30px;
+    }
+
+    .lawyer-section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .lawyer-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-around;
+    }
+
+    .lawyer-card {
+      background: #f9f9f9;
+      border-radius: 10px;
+      width: 280px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+
+    .lawyer-card img {
+      width: 100%;
+      border-radius: 8px;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .lawyer-card h3 {
+      margin: 10px 0 5px;
+      color: #333;
+    }
+
+    .lawyer-card p {
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    .whatsapp-buttons {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .whatsapp-buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      background: #25D366;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 25px;
+      transition: background 0.3s;
+    }
+
+    .whatsapp-buttons a:hover {
+      background: #1ebe57;
+    }
+
+    .temple-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .temple-card {
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .temple-card:hover {
+      transform: scale(1.03);
+    }
+
+    .temple-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .temple-info {
+      padding: 15px;
+    }
+
+    .temple-info h3 {
+      margin: 0;
+      font-size: 1.1em;
+      color: #333;
+    }
+
+    .temple-info p {
+      margin-top: 5px;
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Sri Vaishnava Seva Samithi</div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <div class="nav-links" id="navMenu">
+      <a href="index.html">Home</a>
+      <a href="Registration.html">Family Registration</a>
+      <a href="temples.html">Temples</a>
+      <a href="events.html">Events</a>
+      <a href="legal.html">Legal</a>
+      <a href="donations.html">Donations</a>
+    </div>
+  </nav>
+
+  <!-- Legal Consultation Title -->
+  <h2>⚖️ Legal Consultation Services</h2>
+
+  <!-- Lawyer Cards -->
+  <div class="lawyer-section">
+    <div class="lawyer-info">
+      <div class="lawyer-card">
+        <img src="https://via.placeholder.com/280x180" alt="Lawyer 1" />
+        <h3>Adv. Srinivas Reddy</h3>
+        <p>Family Law, Property Disputes, Civil Matters</p>
+      </div>
+      <div class="lawyer-card">
+        <img src="https://via.placeholder.com/280x180" alt="Lawyer 2" />
+        <h3>Adv. Ramya Krishna</h3>
+        <p>Women’s Rights, Dowry & Harassment Cases</p>
+      </div>
+      <div class="lawyer-card">
+        <img src="https://via.placeholder.com/280x180" alt="Lawyer 3" />
+        <h3>Adv. Mohan Das</h3>
+        <p>Criminal Law, FIR Help, Legal Documentation</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WhatsApp Contact -->
+  <div class="whatsapp-buttons">
+    <a href="https://wa.me/919966031085?text=I%20need%20legal%20help">📞 WhatsApp Legal Help</a>
+    <a href="https://wa.me/919966031085?text=I%20want%20to%20book%20legal%20appointment">📅 Book Appointment</a>
+  </div>
+
+  <!-- Legal Events -->
+  <h2>📆 Legal Awareness Events</h2>
+  <div class="temple-container">
+    <div class="temple-card">
+      <img src="https://via.placeholder.com/300x160" alt="Event 1" />
+      <div class="temple-info">
+        <h3>Legal Camp on Property Rights</h3>
+        <p>Free consultation & documentation check</p>
+      </div>
+    </div>
+    <div class="temple-card">
+      <img src="https://via.placeholder.com/300x160" alt="Event 2" />
+      <div class="temple-info">
+        <h3>Women’s Legal Awareness Session</h3>
+        <p>Guidance for domestic abuse victims</p>
+      </div>
+    </div>
+    <div class="temple-card">
+      <img src="https://via.placeholder.com/300x160" alt="Event 3" />
+      <div class="temple-info">
+        <h3>Document Verification Drive</h3>
+        <p>Bring property documents for legal check</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navMenu").classList.toggle("open");
+    }
+  </script>
+</body>
+</html>
