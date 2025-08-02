@@ -8,49 +8,100 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
+      background: url('https://t4.ftcdn.net/jpg/05/80/52/79/360_F_580527969_cnJcypRSgkAdvenvmUJL8RwdIvXMOTvE.jpg') no-repeat center center fixed;
+      background-size: cover;
+      backdrop-filter: brightness(1.05);
     }
 
-    nav {
-      background-color: #4a148c;
-      color: white;
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+  .navbar {
+  background: rgba(0, 0, 0, 0.5); /* Transparent */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 10px 0;
+}
 
-    nav .logo {
-      font-size: 20px;
-      font-weight: bold;
-    }
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
 
-    nav .nav-links a {
-      color: white;
-      text-decoration: none;
-      margin: 0 10px;
-      font-size: 15px;
-    }
+.logo {
+  color: #fff;
+  font-size: 1.4em;
+  font-weight: bold;
+}
 
-    nav .nav-links a:hover {
-      text-decoration: underline;
-    }
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
 
-    .container {
-      padding: 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
+.nav-links li {
+  margin: 0 8px;
+}
 
-    select {
-      padding: 10px;
-      font-size: 16px;
-      margin-bottom: 10px;
-      width: 100%;
-      max-width: 300px;
-      display: block;
-    }
+.nav-btn {
+  display: inline-block;
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.95em;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: #fff;
+  color: #000;
+  transform: scale(1.05);
+}
+
+.nav-btn.active {
+  background: #fff;
+  color: #000;
+  font-weight: bold;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 1.8em;
+  color: #fff;
+  cursor: pointer;
+}
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    border-radius: 8px;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
 
     h3#templeCount {
       margin-top: 5px;
@@ -66,23 +117,22 @@
     }
 
     .temple-card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  overflow: hidden;
-  width: 100%;
-  max-width: 340px;
-  display: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      width: 100%;
+      max-width: 340px;
+      display: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
 
-.temple-card:hover {
-  transform: scale(1.25);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  z-index: 10;
-}
-
+    .temple-card:hover {
+      transform: scale(1.25);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
 
     .temple-card img {
       width: 100%;
@@ -105,7 +155,6 @@
       border: none;
     }
 
-    /* Scroll-to-top button */
     #topBtn {
       display: none;
       position: fixed;
@@ -122,35 +171,84 @@
       border-radius: 50%;
       box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
+
     #topBtn:hover {
       background-color: #6a1b9a;
     }
 
-    @media (max-width: 600px) {
-      nav .nav-links {
-        flex-basis: 100%;
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-toggle {
         display: flex;
-        justify-content: center;
-        margin-top: 10px;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(74, 20, 140, 0.95);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        margin: 10px 0;
+        padding: 10px;
+        text-align: center;
+        border-top: 1px solid rgba(255,255,255,0.2);
       }
     }
+select {
+  padding: 10px 16px;
+  font-size: 1em;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  backdrop-filter: blur(6px);
+  outline: none;
+  transition: all 0.3s ease;
+  appearance: none;
+  cursor: pointer;
+}
+
+select:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: #000;
+}
+
   </style>
 </head>
+<script>
+  document.getElementById('mobile-menu').addEventListener('click', function () {
+    document.querySelector('.nav-links').classList.toggle('show');
+  });
+
+  document.querySelectorAll('.nav-btn').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.remove('show');
+    });
+  });
+</script>
+
 <body>
-
-  <nav>
+  <nav class="navbar">
+  <div class="nav-container">
     <div class="logo">Sri Vaishnava Seva Samithi</div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="Registration.html">Family Registration</a>
-      <a href="temples.html">Temples</a>
-      <a href="#">Donations</a>
-      <a href="#">Events</a>
-    </div>
-  </nav>
-
+    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-btn">🏠 Home</a></li>
+      <li><a href="registration.html" class="nav-btn">👨‍👩‍👧 Registration</a></li>
+      <li><a href="temples.html" class="nav-btn active">🛕 Temples</a></li>
+      <li><a href="events.html" class="nav-btn">📅 Events</a></li>
+      <li><a href="donations.html" class="nav-btn">💰 Donations</a></li>
+    </ul>
+  </div>
+</nav>
   <div class="container">
-    <h2>Select District</h2>
+   <h2>Select District</h2>
     <select id="districtFilter" onchange="filterTemples()">
       <option value="All">All Districts</option>
     </select>
@@ -254,6 +352,14 @@
   <button onclick="scrollToTop()" id="topBtn" title="Go to top">↑</button>
 
   <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('active');
+    }
+
+    function closeMenu() {
+      document.getElementById('navLinks').classList.remove('active');
+    }
+
     window.onload = () => {
       const container = document.getElementById("templeContainer");
       const cards = container.querySelectorAll(".temple-card");
