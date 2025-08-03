@@ -239,6 +239,66 @@
     }
 
   </script>
+  <script>
+    const cardInput = document.getElementById('card-number');
+
+    cardInput.addEventListener('input', function (e) {
+      let value = e.target.value.replace(/\D/g, ''); // Remove all non-digit characters
+      value = value.substring(0, 16); // Limit to 16 digits
+
+      // Add a space every 4 digits
+      const formatted = value.replace(/(.{4})/g, '$1 ').trim();
+      e.target.value = formatted;
+    });
+  </script>
+  <script>
+    const cardExp = document.getElementById('expiry');
+
+    cardExp.addEventListener('input', function (e) {
+      let value = e.target.value.replace(/\D/g, '');
+
+      if (value.length >= 3) {
+        value = value.substring(0, 4);
+
+        value = value.replace(/(\d{2})(\d{1,2})/, '$1/$2').trim();
+      }
+
+      e.target.value = value;
+    });
+
+    cardExp.addEventListener('blur', function () {
+      const value = cardExp.value;
+
+      if (!/^\d{2}\/\d{2}$/.test(value)) {
+        alert('Expiry must be in MM/YY format');
+        return;
+      }
+
+      const [monthStr, yearStr] = value.split('/');
+      const month = parseInt(monthStr, 10);
+      const year = parseInt('20' + yearStr, 10); // Convert YY to YYYY
+
+      if (month < 1 || month > 12) {
+        alert('Invalid month in expiry date');
+        return;
+      }
+
+      const now = new Date();
+      const expiryDate = new Date(year, month - 1, 1); // First day of expiry month
+
+      // Set to end of expiry month
+      expiryDate.setMonth(expiryDate.getMonth() + 1);
+      expiryDate.setDate(0);
+
+      if (expiryDate < now) {
+        alert('Card has expired');
+        return;
+      }
+
+      // Optional: show success message
+      // alert('Expiry date is valid');
+    });
+  </script>
 </body>
 
 </html>
