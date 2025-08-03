@@ -82,30 +82,41 @@
     <h1>Donations</h1>
     <p>Support our spiritual and community service initiatives. You can contribute through various methods including
       UPI, bank transfer, or in-person donations at events.</p>
-   
+
   </div>
-  <button class="lang-toggle" onclick="toggleQRCode()">UPI QR Code</button>
-  <div id="qrcode"></div>
-  <button onclick="showCardForm()">Pay with Card</button>
+  <div id="paymentOptions">
+    <button class="lang-toggle" onclick="showSection('upi')">UPI QR Code</button>
+    <button onclick="showSection('card')">Pay with Card</button>
+  </div>
+
+  <div id="upi-section">
+    <h3>Scan this QR Code</h3>
+    <div id="qrcode"></div>
+  </div>
+
+
   <div id="cardForm">
     <label>Cardholder Name:
-      <input type="text" placeholder="Name on card" />
-    </label>
-    <label>Card Number:
-      <input type="text" placeholder="1234 5678 9012 3456" />
-    </label>
-    <label>Expiry Date:
-      <input type="text" placeholder="MM/YY" />
-    </label>
-    <label>CVV:
-      <input type="password" placeholder="123" />
-    </label>
+      <input type="text" placeholder="Name on card" /> </label><br>
+    <label>Card Number: <input type="text" placeholder="1234 5678 9012 3456" /> </label><br>
+    <label>Expiry Date:<input type="text" placeholder="MM/YY" /> </label>
+    <label>CVV:<input type="password" placeholder="123" /> </label><br>
     <button>Submit</button>
   </div>
-  
-  <script>
 
-    function toggleQRCode() {
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+
+  <script>
+    function showSection(method) {
+      document.getElementById('upi-section').style.display = method === 'upi' ? 'block' : 'none';
+      document.getElementById('card-section').style.display = method === 'card' ? 'block' : 'none';
+
+      if (method === 'upi') {
+        generateUPIQRCode();
+      }
+    }
+
+    function generateUPIQRCode() {
       const qrcodeContainer = document.getElementById("qrcode");
       qrcodeContainer.innerHTML = ""; // Clear existing QR code if any
 
