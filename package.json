@@ -1,0 +1,23 @@
+{
+  "name": "vaishnavaseva",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saicharan2025-ui/vaishnavaSeva.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saicharan2025-ui/vaishnavaSeva/issues"
+  },
+  "homepage": "https://github.com/saicharan2025-ui/vaishnavaSeva#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

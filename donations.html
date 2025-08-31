@@ -65,6 +65,87 @@
         padding: 15px;
       }
     }
+
+    label {
+      display: block;
+      margin: 10px 0;
+    }
+
+    input {
+      padding: 5px;
+    }
+
+    button {
+      margin-right: 10px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    #upi-section,
+    #cardForm {
+      display: none;
+      /* Hide by default */
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    #upi-section {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #qrcode-wrapper,
+    #cardForm-wrapper {
+      display: flex;
+      justify-content: center;
+      /* horizontal center */
+      align-items: center;
+      /* vertical center (if needed) */
+      width: 100%;
+      /* stretch full width */
+      margin-top: 10px;
+    }
+
+    #QRText {
+      display: flex;
+      justify-content: center;
+      /* horizontal center */
+      align-items: center;
+      /* vertical center (if needed) */
+      width: 100%;
+      /* stretch full width */
+      margin-top: 10px;
+    }
+
+    .card-input-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+      justify-content: center;
+      /* Center the row on the page */
+    }
+
+    .card-input-row label {
+      min-width: 140px;
+      /* Aligns labels */
+      text-align: right;
+    }
+
+    .card-input-row input {
+      padding: 6px;
+      width: 200px;
+    }
+
+    button {
+      padding: 6px 12px;
+    }
   </style>
 </head>
 
@@ -79,29 +160,50 @@
   </nav>
 
   <div class="container">
-    <h1>Donations</h1>
+    <h1><b>Donations</b></h1>
     <p>Support our spiritual and community service initiatives. You can contribute through various methods including
       UPI, bank transfer, or in-person donations at events.</p>
-
   </div>
-  <div id="paymentOptions">
-    <button class="lang-toggle" onclick="showSection('upi')">UPI QR Code</button>
+
+  <div class="button-container">
+    <button onclick="showSection('upi')">UPI QR Code</button>
     <button onclick="showSection('card')">Pay with Card</button>
   </div>
 
   <div id="upi-section">
-    <h3>Scan this QR Code</h3>
-    <div id="qrcode"></div>
+    <h3 id="QRText">Scan this QR Code to Pay</h3>
+    <div id="qrcode-wrapper">
+      <div id="qrcode"></div>
+    </div>
   </div>
 
 
   <div id="cardForm">
-    <label>Cardholder Name:
-      <input type="text" placeholder="Name on card" /> </label><br>
-    <label>Card Number: <input type="text" placeholder="1234 5678 9012 3456" /> </label><br>
-    <label>Expiry Date:<input type="text" placeholder="MM/YY" /> </label>
-    <label>CVV:<input type="password" placeholder="123" /> </label><br>
-    <button>Submit</button>
+
+    <div class="card-input-row">
+      <label for="name">Cardholder Name:</label>
+      <input type="text" id="name" placeholder="Name on card">
+    </div>
+
+    <div class="card-input-row">
+      <label for="card-number">Card Number:</label>
+      <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+    </div>
+
+    <div class="card-input-row">
+      <label for="expiry">Expiry Date:</label>
+      <input type="text" id="expiry" placeholder="MM/YY">
+    </div>
+
+    <div class="card-input-row">
+      <label for="cvv">CVV:</label>
+      <input type="text" id="cvv" placeholder="123">
+    </div>
+
+    <div class="card-input-row">
+      <button type="submit">Submit</button>
+    </div>
+
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
@@ -109,7 +211,7 @@
   <script>
     function showSection(method) {
       document.getElementById('upi-section').style.display = method === 'upi' ? 'block' : 'none';
-      document.getElementById('card-section').style.display = method === 'card' ? 'block' : 'none';
+      document.getElementById('cardForm').style.display = method === 'card' ? 'block' : 'none';
 
       if (method === 'upi') {
         generateUPIQRCode();
@@ -136,6 +238,66 @@
       document.getElementById("cardForm").style.display = "block";
     }
 
+  </script>
+  <script>
+    const cardInput = document.getElementById('card-number');
+
+    cardInput.addEventListener('input', function (e) {
+      let value = e.target.value.replace(/\D/g, ''); // Remove all non-digit characters
+      value = value.substring(0, 16); // Limit to 16 digits
+
+      // Add a space every 4 digits
+      const formatted = value.replace(/(.{4})/g, '$1 ').trim();
+      e.target.value = formatted;
+    });
+  </script>
+  <script>
+    const cardExp = document.getElementById('expiry');
+
+    cardExp.addEventListener('input', function (e) {
+      let value = e.target.value.replace(/\D/g, '');
+
+      if (value.length >= 3) {
+        value = value.substring(0, 4);
+
+        value = value.replace(/(\d{2})(\d{1,2})/, '$1/$2').trim();
+      }
+
+      e.target.value = value;
+    });
+
+    cardExp.addEventListener('blur', function () {
+      const value = cardExp.value;
+
+      if (!/^\d{2}\/\d{2}$/.test(value)) {
+        alert('Expiry must be in MM/YY format');
+        return;
+      }
+
+      const [monthStr, yearStr] = value.split('/');
+      const month = parseInt(monthStr, 10);
+      const year = parseInt('20' + yearStr, 10); // Convert YY to YYYY
+
+      if (month < 1 || month > 12) {
+        alert('Invalid month in expiry date');
+        return;
+      }
+
+      const now = new Date();
+      const expiryDate = new Date(year, month - 1, 1); // First day of expiry month
+
+      // Set to end of expiry month
+      expiryDate.setMonth(expiryDate.getMonth() + 1);
+      expiryDate.setDate(0);
+
+      if (expiryDate < now) {
+        alert('Card has expired');
+        return;
+      }
+
+      // Optional: show success message
+      // alert('Expiry date is valid');
+    });
   </script>
 </body>
 
